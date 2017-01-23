@@ -11,5 +11,15 @@ abstract class GameObj {
     double xVelocity, yVelocity; // objektin nopeuden x-, ja y-komponentit
     double acceleration; // objektin kiihtyvyys
     boolean active; //totuusarvo, jota voidaan käyttää pelin tauottamiseksi
+
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
+    
+    
     
 }
