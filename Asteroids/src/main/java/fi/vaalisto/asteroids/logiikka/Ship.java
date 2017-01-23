@@ -10,6 +10,9 @@ package fi.vaalisto.asteroids.logiikka;
  * @author Ville Vaalisto
  */
 public class Ship extends GameObj {
+    boolean accelerating; // totuusarvo siitä kiihdyttääkö alus. Alus on ainoa objekti, joka voi kiihdyttää.
+    boolean turningLeft, turningRight; // totuusarvo siitä kääntyykö alus. Alus on ainoa objekti, joka voi kääntyä.
+    
 
     
 
