@@ -9,6 +9,6 @@ package fi.vaalisto.asteroids.logiikka;
  *
  * @author Ville Vaalisto
  */
-public class Main {
+public class Game {
     
 }
