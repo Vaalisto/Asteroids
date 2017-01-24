@@ -38,4 +38,23 @@ public class ShipJUnitTest {
     public void AngleRight() {
         assertEquals(0, ship.getAngle());
     }
+    
+    @Test
+    public void moveInsideScreen() {
+        ship.setxVelocity(200);
+        ship.setyVelocity(300);
+        ship.move(800, 600);
+        assertEquals(ship.getX(), 200);
+        assertEquals(ship.getY(), 300);
+    }
+    
+    @Test
+    public void moveCrossingScreenBorder() {
+        ship.setxVelocity(300);
+        ship.move(800, 600);
+        ship.move(800, 600);
+        ship.move(800, 600);
+        assertEquals(ship.getX(), 100);
+        
+    }
 }

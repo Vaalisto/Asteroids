@@ -18,10 +18,7 @@ public class Ship extends GameObj {
      *
      * @param x aluksen aloituspaikan x-koordinaatti
      * @param y aluksen aloituspaikan y-koordinaatti
-     * @param angle aluksen keulan kulma aluksi
-     * @param xVelocity aluksen nopeuden x-komponentti alussa
-     * @param yVelocity aluksen nopeuden y-komponentti alussa
-     * @param acceleration aluksen kiihtyvyys
+     *
      */
     public Ship(int x, int y) {
         this.x = x;
