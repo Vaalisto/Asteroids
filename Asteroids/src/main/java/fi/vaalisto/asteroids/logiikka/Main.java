@@ -5,21 +5,15 @@
  */
 package fi.vaalisto.asteroids.logiikka;
 
-import java.awt.*;
-import javax.swing.*;
-
 /**
  *
  * @author Ville Vaalisto
  */
-public class Game extends JFrame {
+public class Main {
     
-    Graphics g;
-    
-    public Game() throws Exception {
-        this.setSize(800, 600);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setResizable(false);
-        
+    public static void main(String[] args) throws Exception {
+        Game game = new Game();
+        game.setVisible(true);
     }
+    
 }
