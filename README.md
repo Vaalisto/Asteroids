@@ -5,3 +5,5 @@ Ohjelmoinnin harjoitustyö 2017-III Asteroids
 [Aihemäärittely](/Dokumentaatio/Aihemaarittely.md)
 
 [Tuntikirjanpito](/Dokumentaatio/Tuntikirjanpito.md)
+
+[Pelin grafiikat](/Dokumentaatio/Grafiikat.md)

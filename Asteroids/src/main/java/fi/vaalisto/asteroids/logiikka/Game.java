@@ -13,14 +13,17 @@ import javax.swing.*;
  * @author Ville Vaalisto
  */
 public class Game extends JFrame {
-    
-    Graphics g;
-    
+
     public Game() throws Exception {
-        this.setSize(800, 600);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setResizable(false);
-        this.getContentPane().setBackground(Color.BLACK);
-        
+        initComponents();
+
+    }
+    
+    private void initComponents() {
+        setTitle("Asteroids");
+        setSize(800, 600);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setResizable(false);
+        getContentPane().setBackground(Color.BLACK);
     }
 }
