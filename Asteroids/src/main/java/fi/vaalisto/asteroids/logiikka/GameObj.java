@@ -6,18 +6,38 @@ package fi.vaalisto.asteroids.logiikka;
  * @author Ville Vaalisto
  */
 abstract class GameObj {
-    double x, y; //objektin sijainti x,y-koordinaatteina
-    double angle; //objektin keulan suunta
-    double xVelocity, yVelocity; // objektin nopeuden x-, ja y-komponentit
+    int x, y; //objektin sijainti x,y-koordinaatteina
+    int angle; //objektin keulan suunta
+    int xVelocity, yVelocity; // objektin nopeuden x-, ja y-komponentit
     double acceleration; // objektin kiihtyvyys
     boolean active; //totuusarvo, jota voidaan käyttää pelin tauottamiseksi
 
-    public double getX() {
+    public int getX() {
         return x;
     }
 
-    public double getY() {
+    public int getY() {
         return y;
+    }
+
+    public int getAngle() {
+        return angle;
+    }
+
+    public int getxVelocity() {
+        return xVelocity;
+    }
+
+    public int getyVelocity() {
+        return yVelocity;
+    }
+
+    public double getAcceleration() {
+        return acceleration;
+    }
+
+    public boolean isActive() {
+        return active;
     }
     
     

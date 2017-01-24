@@ -23,13 +23,13 @@ public class Ship extends GameObj {
      * @param yVelocity aluksen nopeuden y-komponentti alussa
      * @param acceleration aluksen kiihtyvyys
      */
-    public Ship(double x, double y, double angle, double xVelocity, double yVelocity, double acceleration) {
+    public Ship(int x, int y) {
         this.x = x;
         this.y = y;
-        this.angle = angle;
-        this.xVelocity = xVelocity;
-        this.yVelocity = yVelocity;
-        this.acceleration = acceleration;
+        this.angle = 0;
+        this.xVelocity = 0;
+        this.yVelocity = 0;
+        this.acceleration = 0.35; //mielivaltainen arvo tällä hetkellä.
         this.accelerating = false;
         this.turningLeft = false;
         this.turningRight = false;

@@ -17,29 +17,25 @@ import static org.junit.Assert.*;
  * @author Ville Vaalisto
  */
 public class ShipJUnitTest {
-    
+
+    Ship ship;
+
     public ShipJUnitTest() {
     }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
+
     @Before
     public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
+        ship = new Ship(0, 0);
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    @Test
+    public void getCoordinatesRight() {
+        assertEquals(0, ship.getX());
+        assertEquals(0, ship.getY());
+    }
+    
+    @Test
+    public void AngleRight() {
+        assertEquals(0, ship.getAngle());
+    }
 }
