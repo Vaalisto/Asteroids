@@ -1,0 +1,8 @@
+[Main]1++->1[Game]
+[Game]1++->1[Screen]
+[Screen]1->0..*[GameObj]
+[Screen]1->1[Score]
+[GameObj]-.-^[Ship]
+[GameObj]-.-^[Asteroid]
+[GameObj]-.-^[Shot]
+[Game]1++->1[Gui]

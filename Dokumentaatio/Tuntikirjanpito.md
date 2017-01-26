@@ -3,4 +3,5 @@ Päivä | Tunnit | Kuvaus
 --------------- | ----- | ------
 17.01.2017 | 3h | Aiheen suunnittelua ja repon luonti
 23.01.2017 | 2h | Aloitettu luokkien suunnittelua ja toteutusta
-24.01.2017 | 2h | Toteutettu luokkia niin, että avautuu jo sovellukselle ikkuna. Tehty myös testejä.
+24.01.2017 | 2h | Toteutettu luokkia niin, että avautuu jo sovellukselle ikkuna
+26.1.2017 | 1h | Luotu kattavat testit GameObj-luokalle, jotta PIT-raportissa menee tällä hetkellä kaikki läpi

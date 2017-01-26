@@ -35,8 +35,28 @@ public class ShipJUnitTest {
     }
 
     @Test
-    public void AngleRight() {
+    public void shipInNegativeSpace() {
+        ship = new Ship(-100, -100);
+        assertEquals(-100, ship.getX());
+        assertEquals(-100, ship.getY());
+    }
+
+    @Test
+    public void AngleRightInConstructor() {
         assertEquals(0, ship.getAngle());
+    }
+    
+    @Test
+    public void getActiveRightInConstructor() {
+        assertFalse(ship.isActive());
+    }
+
+    @Test
+    public void getVelocitiesRight() {
+        ship.setxVelocity(10);
+        ship.setyVelocity(-10);
+        assertEquals(10, ship.getxVelocity());
+        assertEquals(-10, ship.getyVelocity());
     }
 
     @Test
@@ -54,13 +74,50 @@ public class ShipJUnitTest {
         ship.move(800, 600);
         ship.move(800, 600);
         ship.move(800, 600);
-        assertEquals(ship.getX(), 100);
+        assertEquals(100, ship.getX());
     }
-    
+
     @Test
     public void moveCrossingScreenBorderVertically() {
         ship.setyVelocity(-100);
         ship.move(800, 600);
-        assertEquals(ship.getY(), 500);
+        assertEquals(500, ship.getY());
+    }
+    
+    @Test
+    public void moveToBorder() {
+        ship.setxVelocity(800);
+        ship.setyVelocity(600);
+        ship.move(800, 600);
+        assertEquals(800, ship.getX());
+        assertEquals(600, ship.getY());
+    }
+
+    @Test
+    public void shipMovesInNegativeSpace() {
+        ship = new Ship(-100, -100);
+        ship.move(800, 600);
+        assertEquals(700, ship.getX());
+        assertEquals(500, ship.getY());
+    }
+
+    @Test
+    public void shipMovesInPositiveSpace() {
+        ship = new Ship(1000, 800);
+        ship.move(800, 600);
+        assertEquals(200, ship.getX());
+        assertEquals(200, ship.getY());
+    }
+
+    @Test
+    public void shipInNegativeScreen() {
+        ship.move(-800, -600);
+        assertEquals(800, ship.getX());
+        assertEquals(600, ship.getY());
+    }
+
+    @Test
+    public void getAccelerationRight() {
+        assertEquals(0.35, ship.getAcceleration(), 0.0);
     }
 }
