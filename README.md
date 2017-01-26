@@ -6,7 +6,7 @@ Ohjelmoinnin harjoitustyö 2017-III Asteroids
 
 [Tuntikirjanpito](/Dokumentaatio/Tuntikirjanpito.md)
 
-[PIT-raportti](http://htmlpreview.github.io/?https://github.com/Vaalisto/Asteroids/blob/master/Dokumentaatio/pit-reports/201701261039/index.html)
+[PIT-raportti](http://htmlpreview.github.io/?https://github.com/Vaalisto/Asteroids/blob/master/Dokumentaatio/pit-reports/index.html)
 
 [Checkstyle-raportti](http://htmlpreview.github.io/?https://github.com/Vaalisto/Asteroids/blob/master/Dokumentaatio/Checkstyle/Deadline%202%20raportti/checkstyle.html)
 
