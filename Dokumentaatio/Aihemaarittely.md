@@ -9,3 +9,8 @@
 * Kääntää alusta vasemmalle ja oikealle
 * Kiihdyttä alusta nokan osoittamaan suuntaan
 * Ampua aluksella
+* Alus tuhoutuu osutessa asteroidiin
+* Pistelaskuriin kertyy pisteitä, kun ammuttu ammus tuhoaa asteroideja
+
+### Luokkakaavio
+![Luokkakaavio](Luokkakaavio.png)
