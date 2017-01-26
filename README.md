@@ -8,9 +8,9 @@ Ohjelmoinnin harjoitustyö 2017-III Asteroids
 
 [Luokkakaavio](/Dokumentaatio/Luokkakaavio.png)
 
-[PIT-raportti](Dokumentaatio/pit-reports/201701261039/index.html)
+[PIT-raportti](http://htmlpreview.github.io/?https://github.com/Vaalisto/Asteroids/blob/master/Dokumentaatio/pit-reports/201701261039/index.html)
 
-[Checkstyle-raportti](/Dokumentaatio/Checkstyle/Deadline 2 raportti/checkstyle.html)
+[Checkstyle-raportti](http://htmlpreview.github.io/?https://github.com/Vaalisto/Asteroids/blob/master/Dokumentaatio/Checkstyle/Deadline%202%20raportti/checkstyle.html)
 
 [Pelin grafiikat](/Dokumentaatio/Grafiikat.md)
 
