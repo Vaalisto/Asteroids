@@ -1,5 +1,8 @@
 package fi.vaalisto.asteroids.logiikka;
 
+import java.awt.*;
+import java.net.URL;
+
 /**
  * Pelissä esiintyvien objektien abstrakti luokka
  *
@@ -11,7 +14,8 @@ abstract class GameObj {
     int angle; //objektin keulan suunta
     int xVelocity, yVelocity; // objektin nopeuden x-, ja y-komponentit
     double acceleration; // objektin kiihtyvyys
-    boolean active; //totuusarvo, jota voidaan käyttää pelin tauottamiseksi    
+    boolean active; //totuusarvo, jota voidaan käyttää pelin tauottamiseksi
+    Image img;
 
     public int getX() {
         return x;

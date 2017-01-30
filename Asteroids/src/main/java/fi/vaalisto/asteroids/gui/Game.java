@@ -8,6 +8,8 @@ import javax.swing.*;
  * @author Ville Vaalisto
  */
 public class Game extends JFrame {
+    
+    public Screen screen;
 
     public Game() throws Exception {
         initComponents();
@@ -19,6 +21,8 @@ public class Game extends JFrame {
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
-        getContentPane().setBackground(Color.BLACK);
+//        getContentPane().setBackground(Color.BLACK);
+        screen = new Screen(800, 600);
+        this.add(screen);
     }
 }

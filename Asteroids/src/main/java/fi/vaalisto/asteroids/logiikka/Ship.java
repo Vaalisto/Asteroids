@@ -1,6 +1,8 @@
 package fi.vaalisto.asteroids.logiikka;
 
 import java.awt.*;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -22,7 +24,7 @@ public class Ship extends GameObj {
      */
     public Ship(int x, int y) {
         this.x = x;
-        this.y = y;
+        this.y = y;        
         this.angle = 0;
         this.xVelocity = 0;
         this.yVelocity = 0;
@@ -30,6 +32,11 @@ public class Ship extends GameObj {
         this.accelerating = false;
         this.turningLeft = false;
         this.turningRight = false;
+        try {
+            this.img = ImageIO.read(getClass().getResourceAsStream("ship.png"));
+        } catch (IOException e) {
+            System.out.println("Ship picture missing!");
+        }
 
     }
 
