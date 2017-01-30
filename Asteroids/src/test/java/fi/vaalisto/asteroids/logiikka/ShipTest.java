@@ -16,11 +16,11 @@ import static org.junit.Assert.*;
  *
  * @author Ville Vaalisto
  */
-public class ShipJUnitTest {
+public class ShipTest {
 
     Ship ship;
 
-    public ShipJUnitTest() {
+    public ShipTest() {
     }
 
     @Before
