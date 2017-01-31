@@ -32,11 +32,12 @@ public class Ship extends GameObj {
         this.accelerating = false;
         this.turningLeft = false;
         this.turningRight = false;
-//        try {
-//            this.img = ImageIO.read(getClass().getResourceAsStream("ship.png"));
-//        } catch (IOException e) {
-//            System.out.println("Ship picture missing!");
-//        }
+        this.img = null;
+        try {
+            this.img = ImageIO.read(getClass().getClassLoader().getResourceAsStream("ship.png"));
+        } catch (IOException e) {
+            System.out.println("Ship picture missing!");
+        }
 
     }
 

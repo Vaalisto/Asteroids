@@ -40,6 +40,10 @@ abstract class GameObj {
     public double getAcceleration() {
         return acceleration;
     }
+    
+    public Image getImage() {
+        return img;
+    }
 
     public boolean isActive() {
         return active;
