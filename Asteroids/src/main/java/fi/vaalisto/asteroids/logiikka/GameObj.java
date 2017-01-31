@@ -48,6 +48,14 @@ abstract class GameObj {
     public boolean isActive() {
         return active;
     }
+    
+    public int imageHalfWidth() {
+        return img.getWidth(null) / 2;
+    }
+    
+    public int imageHalfHeight() {
+        return img.getHeight(null) / 2;
+    }
 
     public void setxVelocity(int xVelocity) {
         this.xVelocity = xVelocity;

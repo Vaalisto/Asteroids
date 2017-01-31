@@ -1,9 +1,11 @@
 package fi.vaalisto.asteroids.gui;
 
-import fi.vaalisto.asteroids.logiikka.Asteroid;
-import fi.vaalisto.asteroids.logiikka.Ship;
+import fi.vaalisto.asteroids.logiikka.*;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.ArrayList;
+import java.util.ListIterator;
+import java.util.Random;
 import javax.swing.*;
 
 /**
@@ -12,21 +14,57 @@ import javax.swing.*;
  */
 public class Screen extends JPanel {
 
+    private int w;
+    private int h;
     private Ship ship;
     private Asteroid rock;
+    private ArrayList<Asteroid> asteroidlist;
 
     public Screen(int w, int h) {
+        this.w = w;
+        this.h = h;
+        this.asteroidlist = new ArrayList<Asteroid>();
         this.setBackground(Color.BLACK);
         super.setSize(w, h);
-        ship = new Ship(w / 2, h / 2);
-        rock = new Asteroid(w / 4, w / 4);
+        initShip();
+        initAsteroids();
+        
 
+    }
+
+    public void initShip() {
+        ship = new Ship(w / 2, h / 2);
+    }
+
+    public void initAsteroids() {
+        for (int i = 0; i < 4; i++) {
+            int randomX = (int) (Math.random() * w);
+            int randomY = (int) (Math.random() * h);
+            rock = new Asteroid(randomX, randomY);
+            asteroidlist.add(rock);
+        }
+    }
+
+    public void drawShip(Graphics g) {
+        int xOffset = ship.getX() - ship.imageHalfWidth();
+        int yOffset = ship.getY() - ship.imageHalfHeight();
+        g.drawImage(ship.getImage(), xOffset, yOffset, this);
+    }
+
+    public void drawAsteroids(Graphics g) {
+        if (!asteroidlist.isEmpty()) {
+            for (Asteroid a : asteroidlist) {
+                int xOffset = a.getX() - a.imageHalfWidth();
+                int yOffset = a.getY() - a.imageHalfHeight();
+                g.drawImage(a.getImage(), xOffset, yOffset, this);
+            }
+        }
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(ship.getImage(), ship.getX(), ship.getY(), this);
-        g.drawImage(rock.getImage(), rock.getX(), rock.getY(), this);
+        drawShip(g);
+        drawAsteroids(g);
     }
 }
