@@ -25,10 +25,11 @@ public class Screen extends JPanel {
         this.w = w;
         this.h = h;
         this.asteroidlist = new ArrayList<Asteroid>();
-        this.setBackground(Color.BLACK);
+        this.setBackground(Color.BLUE); //toistaiseksi sininen, jotta näkee objektit paremmin
         super.setSize(w, h);
         initShip();
         initAsteroids();
+        ship.setAngle(-270); //testataan kääntyykö alus
         
 
     }

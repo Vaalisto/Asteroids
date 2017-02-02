@@ -41,7 +41,7 @@ abstract class GameObj {
     public double getAcceleration() {
         return acceleration;
     }
-    
+
     public Image getImage() {
         return img;
     }
@@ -49,11 +49,11 @@ abstract class GameObj {
     public boolean isActive() {
         return active;
     }
-    
+
     public int imageHalfWidth() {
         return img.getWidth(null) / 2;
     }
-    
+
     public int imageHalfHeight() {
         return img.getHeight(null) / 2;
     }
@@ -64,6 +64,10 @@ abstract class GameObj {
 
     public void setyVelocity(int yVelocity) {
         this.yVelocity = yVelocity;
+    }
+
+    public void setAngle(int angle) {
+        this.angle = angle;
     }
 
     public void move(int screenWidth, int screenHeight) {
@@ -80,12 +84,12 @@ abstract class GameObj {
             y -= screenHeight;
         }
     }
-    
+
     public void draw(Graphics g) {
         int xOffset = getX() - imageHalfWidth();
         int yOffset = getY() - imageHalfHeight();
         AffineTransform at = AffineTransform.getTranslateInstance(xOffset, yOffset);
-        at.rotate(Math.toRadians(45));
+        at.rotate(Math.toRadians(angle));
         Graphics2D g2d = (Graphics2D) g;
         g2d.drawImage(img, at, null);
     }

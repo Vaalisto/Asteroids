@@ -5,6 +5,8 @@
  */
 package fi.vaalisto.asteroids.logiikka;
 
+import java.awt.Image;
+import javax.imageio.ImageIO;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -16,22 +18,27 @@ import static org.junit.Assert.*;
  *
  * @author Ville Vaalisto
  */
-public class ShipTest {
+public class GameObjTest {
 
     Ship ship;
+    Asteroid asteroid;
 
-    public ShipTest() {
+    public GameObjTest() {
     }
 
     @Before
     public void setUp() {
         ship = new Ship(0, 0);
+        asteroid = new Asteroid(100, 200);
     }
 
     @Test
     public void getCoordinatesRight() {
         assertEquals(0, ship.getX());
         assertEquals(0, ship.getY());
+        assertEquals(100, asteroid.getX());
+        assertEquals(200, asteroid.getY());
+
     }
 
     @Test
@@ -44,8 +51,17 @@ public class ShipTest {
     @Test
     public void AngleRightInConstructor() {
         assertEquals(0, ship.getAngle());
+        assertEquals(0, asteroid.getAngle());
     }
     
+    @Test
+    public void AngleRightAfterSetter() {
+        ship.setAngle(45);
+        asteroid.setAngle(-270);
+        assertEquals(45, ship.getAngle());
+        assertEquals(-270, asteroid.getAngle());
+    }
+
     @Test
     public void getActiveRightInConstructor() {
         assertFalse(ship.isActive());
@@ -55,8 +71,12 @@ public class ShipTest {
     public void getVelocitiesRight() {
         ship.setxVelocity(10);
         ship.setyVelocity(-10);
+        asteroid.setxVelocity(1);
+        asteroid.setyVelocity(66);
         assertEquals(10, ship.getxVelocity());
         assertEquals(-10, ship.getyVelocity());
+        assertEquals(1, asteroid.getxVelocity());
+        assertEquals(66, asteroid.getyVelocity());
     }
 
     @Test
@@ -83,7 +103,7 @@ public class ShipTest {
         ship.move(800, 600);
         assertEquals(500, ship.getY());
     }
-    
+
     @Test
     public void moveToBorder() {
         ship.setxVelocity(800);
@@ -120,4 +140,5 @@ public class ShipTest {
     public void getAccelerationRight() {
         assertEquals(0.35, ship.getAcceleration(), 0.0);
     }
+
 }
