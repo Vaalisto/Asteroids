@@ -14,6 +14,7 @@ import javax.swing.*;
  */
 public class Screen extends JPanel {
 
+    private static final int NUMBER_OF_ASTEROIDS = 4;
     private int w;
     private int h;
     private Ship ship;
@@ -37,7 +38,7 @@ public class Screen extends JPanel {
     }
 
     public void initAsteroids() {
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < NUMBER_OF_ASTEROIDS; i++) {
             int randomX = (int) (Math.random() * w);
             int randomY = (int) (Math.random() * h);
             rock = new Asteroid(randomX, randomY);
