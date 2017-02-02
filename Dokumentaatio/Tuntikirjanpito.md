@@ -7,3 +7,4 @@ Päivä | Tunnit | Kuvaus
 26.01.2017 | 1h | Luotu kattavat testit GameObj-luokalle, jotta PIT-raportissa menee tällä hetkellä kaikki läpi
 30.01.2017 | 1h | Googleteltu miten saadaan grafiikkaa piirtymään ja hahmoteltu metodeja
 31.01.2017 | 4h | Saatu alus ja asteroideja piirtymään ruudulle.
+02.02.2016 | 2h | Googleteltu miten saataisiin spritejä pyöritettyä ja siistitty vähän koodia
