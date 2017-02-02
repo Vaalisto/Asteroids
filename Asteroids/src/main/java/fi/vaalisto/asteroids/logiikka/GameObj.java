@@ -1,6 +1,7 @@
 package fi.vaalisto.asteroids.logiikka;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.net.URL;
 
 /**
@@ -83,7 +84,10 @@ abstract class GameObj {
     public void draw(Graphics g) {
         int xOffset = getX() - imageHalfWidth();
         int yOffset = getY() - imageHalfHeight();
-        g.drawImage(img, xOffset, yOffset, null);
+        AffineTransform at = AffineTransform.getTranslateInstance(xOffset, yOffset);
+        at.rotate(Math.toRadians(45));
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.drawImage(img, at, null);
     }
 
 }
