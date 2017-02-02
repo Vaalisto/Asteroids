@@ -46,17 +46,13 @@ public class Screen extends JPanel {
     }
 
     public void drawShip(Graphics g) {
-        int xOffset = ship.getX() - ship.imageHalfWidth();
-        int yOffset = ship.getY() - ship.imageHalfHeight();
-        g.drawImage(ship.getImage(), xOffset, yOffset, this);
+        this.ship.draw(g);
     }
 
     public void drawAsteroids(Graphics g) {
         if (!asteroidlist.isEmpty()) {
             for (Asteroid a : asteroidlist) {
-                int xOffset = a.getX() - a.imageHalfWidth();
-                int yOffset = a.getY() - a.imageHalfHeight();
-                g.drawImage(a.getImage(), xOffset, yOffset, this);
+                a.draw(g);
             }
         }
     }

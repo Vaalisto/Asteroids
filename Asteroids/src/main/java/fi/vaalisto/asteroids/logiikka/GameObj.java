@@ -79,5 +79,11 @@ abstract class GameObj {
             y -= screenHeight;
         }
     }
+    
+    public void draw(Graphics g) {
+        int xOffset = getX() - imageHalfWidth();
+        int yOffset = getY() - imageHalfHeight();
+        g.drawImage(img, xOffset, yOffset, null);
+    }
 
 }
