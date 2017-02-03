@@ -30,7 +30,6 @@ public class Screen extends JPanel {
         initShip();
         initAsteroids();
         ship.setAngle(-270); //testataan kääntyykö alus
-        
 
     }
 

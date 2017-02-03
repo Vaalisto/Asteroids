@@ -24,7 +24,7 @@ public class Ship extends GameObj {
      */
     public Ship(int x, int y) {
         this.x = x;
-        this.y = y;        
+        this.y = y;
         this.angle = 0;
         this.xVelocity = 0;
         this.yVelocity = 0;

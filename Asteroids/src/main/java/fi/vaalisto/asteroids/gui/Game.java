@@ -8,19 +8,19 @@ import javax.swing.*;
  * @author Ville Vaalisto
  */
 public class Game extends JFrame {
-    
+
     public Screen screen;
 
     public Game() throws Exception {
         initComponents();
 
     }
-    
+
     private void initComponents() {
         setTitle("Asteroids");
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setResizable(false);        
+        setResizable(false);
 //        getContentPane().setBackground(Color.BLACK);
         screen = new Screen(800, 600);
         this.add(screen);
