@@ -12,6 +12,7 @@ package fi.vaalisto.asteroids.logiikka;
 public class Score implements Comparable<Score> {
 
     int score;
+    String name;
 
     Score(int score) {
         this.score = score;
@@ -19,6 +20,10 @@ public class Score implements Comparable<Score> {
 
     public int getScore() {
         return score;
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override
