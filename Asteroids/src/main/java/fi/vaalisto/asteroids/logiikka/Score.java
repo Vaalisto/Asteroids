@@ -11,11 +11,12 @@ package fi.vaalisto.asteroids.logiikka;
  */
 public class Score implements Comparable<Score> {
 
-    int score;
-    String name;
+    public int score;
+    public String name;
 
-    Score(int score) {
+    Score(int score, String name) {
         this.score = score;
+        this.name = name;
     }
 
     public int getScore() {

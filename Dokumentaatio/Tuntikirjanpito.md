@@ -8,4 +8,4 @@ Päivä | Tunnit | Kuvaus
 30.01.2017 | 1h | Googleteltu miten saadaan grafiikkaa piirtymään ja hahmoteltu metodeja
 31.01.2017 | 4h | Saatu alus ja asteroideja piirtymään ruudulle.
 02.02.2017 | 2h | Saatu alustavasti objektien grafiikoita käännettyä ja siistitty vähän koodia
-03.02.2017 | 1h | Googleteltu pelin reaaliaikaiseen toimimiseen liittyviä asioita
+03.02.2017 | 3h | Googleteltu pelin reaaliaikaiseen toimimiseen liittyviä asioita ja tehty lisää testejä
