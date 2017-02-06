@@ -11,18 +11,18 @@ import java.net.URL;
  */
 abstract class GameObj {
 
-    int x, y; //objektin sijainti x,y-koordinaatteina
+    double x, y; //objektin sijainti x,y-koordinaatteina
     int angle; //objektin keulan suunta
-    int xVelocity, yVelocity; // objektin nopeuden x-, ja y-komponentit
+    double xVelocity, yVelocity; // objektin nopeuden x-, ja y-komponentit
     double acceleration; // objektin kiihtyvyys
     boolean active; //totuusarvo, jota voidaan käyttää pelin tauottamiseksi
     Image img;
 
-    public int getX() {
+    public double getX() {
         return x;
     }
 
-    public int getY() {
+    public double getY() {
         return y;
     }
 
@@ -30,11 +30,11 @@ abstract class GameObj {
         return angle;
     }
 
-    public int getxVelocity() {
+    public double getxVelocity() {
         return xVelocity;
     }
 
-    public int getyVelocity() {
+    public double getyVelocity() {
         return yVelocity;
     }
 
@@ -58,11 +58,11 @@ abstract class GameObj {
         return img.getHeight(null) / 2;
     }
 
-    public void setxVelocity(int xVelocity) {
+    public void setxVelocity(double xVelocity) {
         this.xVelocity = xVelocity;
     }
 
-    public void setyVelocity(int yVelocity) {
+    public void setyVelocity(double yVelocity) {
         this.yVelocity = yVelocity;
     }
 
@@ -86,8 +86,8 @@ abstract class GameObj {
     }
 
     public void draw(Graphics g) {
-        int xOffset = getX() - imageHalfWidth();
-        int yOffset = getY() - imageHalfHeight();
+        double xOffset = getX() - imageHalfWidth();
+        double yOffset = getY() - imageHalfHeight();
         AffineTransform at = AffineTransform.getTranslateInstance(xOffset, yOffset);
         at.rotate(Math.toRadians(angle));
         Graphics2D g2d = (Graphics2D) g;

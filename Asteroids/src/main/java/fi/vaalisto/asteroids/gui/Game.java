@@ -25,5 +25,6 @@ public class Game extends JFrame {
         screen = new Screen(800, 600);
         this.add(screen);
         setVisible(true);
+        screen.run();
     }
 }
