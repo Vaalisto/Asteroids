@@ -2,6 +2,7 @@ package fi.vaalisto.asteroids.logiikka;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
 import java.net.URL;
 
 /**
@@ -12,11 +13,11 @@ import java.net.URL;
 abstract class GameObj {
 
     double x, y; //objektin sijainti x,y-koordinaatteina
-    int angle; //objektin keulan suunta
+    double angle; //objektin keulan suunta
     double xVelocity, yVelocity; // objektin nopeuden x-, ja y-komponentit
-    double acceleration; // objektin kiihtyvyys
+    double acceleration; // objektin kiihtyvyys    
     boolean active; //totuusarvo, jota voidaan käyttää pelin tauottamiseksi
-    Image img;
+    BufferedImage img;
 
     public double getX() {
         return x;
@@ -26,7 +27,7 @@ abstract class GameObj {
         return y;
     }
 
-    public int getAngle() {
+    public double getAngle() {
         return angle;
     }
 
@@ -51,11 +52,11 @@ abstract class GameObj {
     }
 
     public int imageHalfWidth() {
-        return img.getWidth(null) / 2;
+        return img.getWidth() / 2;
     }
 
     public int imageHalfHeight() {
-        return img.getHeight(null) / 2;
+        return img.getHeight() / 2;
     }
 
     public void setxVelocity(double xVelocity) {
@@ -73,25 +74,27 @@ abstract class GameObj {
     public void move(int screenWidth, int screenHeight) {
         x += xVelocity;
         y += yVelocity;
-        if (x < 0) {
-            x += screenWidth;
-        } else if (x > screenWidth) {
-            x -= screenWidth;
+        x = borderCheck(x, screenWidth);
+        y = borderCheck(y, screenHeight);
+    }
+
+    public double borderCheck(double point, int limit) {
+        if (point < 0) {
+            point += limit;
+        } else if (point > limit) {
+            point -= limit;
         }
-        if (y < 0) {
-            y += screenHeight;
-        } else if (y > screenHeight) {
-            y -= screenHeight;
-        }
+        return point;
     }
 
     public void draw(Graphics g) {
         double xOffset = getX() - imageHalfWidth();
         double yOffset = getY() - imageHalfHeight();
         AffineTransform at = AffineTransform.getTranslateInstance(xOffset, yOffset);
-        at.rotate(Math.toRadians(angle));
+        at.rotate(Math.toRadians(angle), imageHalfWidth(), imageHalfHeight());
         Graphics2D g2d = (Graphics2D) g;
         g2d.drawImage(img, at, null);
+
     }
 
 }

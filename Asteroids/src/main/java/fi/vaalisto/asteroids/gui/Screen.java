@@ -39,7 +39,7 @@ public class Screen extends JPanel {
 
     public void initShip() {
         ship = new Ship(w / 2, h / 2);
-        ship.setxVelocity(0.00001);
+//        ship.setxVelocity(0.00001);
     }
 
     public void initAsteroids() {
