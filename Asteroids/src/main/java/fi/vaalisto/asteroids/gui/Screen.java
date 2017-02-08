@@ -34,7 +34,7 @@ public class Screen extends JPanel {
         super.setSize(w, h);
         initShip();
         initAsteroids();
-        setAsteroidSpeed();
+//        setAsteroidSpeed();
     }
 
     public void initShip() {

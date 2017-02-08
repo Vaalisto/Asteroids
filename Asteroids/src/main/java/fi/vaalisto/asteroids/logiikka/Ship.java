@@ -58,7 +58,7 @@ public class Ship extends GameObj {
         if (turningRight) {
             angle += TURN_RATE;
         }
-        this.angleCheck(angle);
+        angleCheck();
         if (accelerating) {
             double deltaXVel = ACCELERATION * Math.sin(angle);
             double deltaYVel = ACCELERATION * Math.cos(angle);

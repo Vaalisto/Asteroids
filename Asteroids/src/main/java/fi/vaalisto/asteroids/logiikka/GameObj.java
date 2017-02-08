@@ -64,14 +64,16 @@ abstract class GameObj {
 
     public void setAngle(double angle) {
         this.angle = angle;
+        angleCheck();
+        
     }
 
-    public void angleCheck(double angle) {
-        if (angle < 0) {
-            angle += 2 * Math.PI;
+    public void angleCheck() {
+        if (this.angle < 0) {
+            this.angle += 2 * Math.PI;
         }
-        if (angle > (2 * Math.PI)) {
-            angle -= 2 * Math.PI;
+        if (this.angle > (2 * Math.PI)) {
+            this.angle -= 2 * Math.PI;
         }
     }
 
