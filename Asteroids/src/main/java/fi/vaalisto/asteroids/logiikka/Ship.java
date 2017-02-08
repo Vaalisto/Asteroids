@@ -12,6 +12,7 @@ public class Ship extends GameObj {
 
     private static final double TURN_RATE = 0.000001;
     private static final double SPEED_LIMIT = 0.00003;
+    private static final double ACCELERATION = 0.000000000005;
 
     boolean accelerating; // totuusarvo siitä kiihdyttääkö alus. Alus on ainoa objekti, joka voi kiihdyttää.
     boolean turningLeft, turningRight; // totuusarvo siitä kääntyykö alus. Alus on ainoa objekti, joka voi kääntyä.
@@ -28,10 +29,9 @@ public class Ship extends GameObj {
     public Ship(int x, int y) {
         this.x = x;
         this.y = y;
-        this.angle = Math.PI/6;
+        this.angle = 0;
         this.xVelocity = 0;
         this.yVelocity = 0;
-        this.acceleration = 0.000000000005; //mielivaltainen arvo tällä hetkellä.
         this.accelerating = true;
         this.turningLeft = true; //väliaikainen arvo testausta varten
         this.turningRight = false;
@@ -47,8 +47,7 @@ public class Ship extends GameObj {
 
     private double sumSpeedVector(double xComponent, double yComponent) {
         return Math.sqrt((xComponent * xComponent) + (yComponent * yComponent));
-    }  
-     
+    }
 
     @Override
     public void move(int screenWidth, int screenHeight) {
@@ -61,8 +60,8 @@ public class Ship extends GameObj {
         }
         this.angleCheck(angle);
         if (accelerating) {
-            double deltaXVel = acceleration * Math.sin(angle);
-            double deltaYVel = acceleration * Math.cos(angle);
+            double deltaXVel = ACCELERATION * Math.sin(angle);
+            double deltaYVel = ACCELERATION * Math.cos(angle);
             double newXVel = xVelocity + deltaXVel;
             double newYVel = yVelocity + deltaYVel;
             double newSpeed = sumSpeedVector(newXVel, newYVel);
@@ -70,7 +69,7 @@ public class Ship extends GameObj {
                 xVelocity -= deltaXVel;
                 yVelocity += deltaYVel;
             }
-            
+
         }
     }
 

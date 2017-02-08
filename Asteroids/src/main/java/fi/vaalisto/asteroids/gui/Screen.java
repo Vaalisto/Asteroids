@@ -48,15 +48,13 @@ public class Screen extends JPanel {
             asteroidlist.add(new Asteroid(randomX, randomY));
         }
     }
-    
+
     public void setAsteroidSpeed() { // testataan, että peli pyörii
         for (Asteroid a : asteroidlist) {
             a.setxVelocity(0.000002);
             a.setyVelocity(-0.000002);
         }
     }
-    
-    
 
     public void drawShip(Graphics g) {
         this.ship.draw(g);
@@ -69,7 +67,7 @@ public class Screen extends JPanel {
             }
         }
     }
-    
+
     public void updateAsteroids() {
         if (!asteroidlist.isEmpty()) {
             for (Asteroid a : asteroidlist) {

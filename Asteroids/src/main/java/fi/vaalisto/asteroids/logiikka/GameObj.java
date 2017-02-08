@@ -14,8 +14,7 @@ abstract class GameObj {
 
     double x, y; //objektin sijainti x,y-koordinaatteina
     double angle; //objektin keulan suunta
-    double xVelocity, yVelocity; // objektin nopeuden x-, ja y-komponentit
-    double acceleration; // objektin kiihtyvyys    
+    double xVelocity, yVelocity; // objektin nopeuden x-, ja y-komponentit        
     boolean active; //totuusarvo, jota voidaan käyttää pelin tauottamiseksi
     BufferedImage img;
 
@@ -37,10 +36,6 @@ abstract class GameObj {
 
     public double getyVelocity() {
         return yVelocity;
-    }
-
-    public double getAcceleration() {
-        return acceleration;
     }
 
     public Image getImage() {
@@ -70,7 +65,7 @@ abstract class GameObj {
     public void setAngle(double angle) {
         this.angle = angle;
     }
-    
+
     public void angleCheck(double angle) {
         if (angle < 0) {
             angle += 2 * Math.PI;

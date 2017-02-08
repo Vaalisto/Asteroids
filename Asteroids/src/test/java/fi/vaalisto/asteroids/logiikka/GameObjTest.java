@@ -137,11 +137,6 @@ public class GameObjTest {
     }
 
     @Test
-    public void getAccelerationRight() {
-        assertEquals(0.35, ship.getAcceleration(), 0.0);
-    }
-
-    @Test
     public void imagesNotNullAtContructor() {
         assertNotNull(ship.getImage());
         assertNotNull(asteroid.getImage());
