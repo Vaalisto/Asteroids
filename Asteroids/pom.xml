@@ -42,12 +42,10 @@
                 <version>1.1.8</version>
                 <configuration>
                     <targetClasses>
-                        <param>fi.vaalisto.asteroids.logiikka.*</param>
-                        <param>fi.vaalisto.asteroids.gui.*</param>
+                        <param>fi.vaalisto.asteroids.logiikka.*</param>                        
                     </targetClasses>
                     <targetTests>
-                        <param>fi.vaalisto.asteroids.logiikka.*</param>
-                        <param>fi.vaalisto.asteroids.gui.*</param>
+                        <param>fi.vaalisto.asteroids.logiikka.*</param>                        
                     </targetTests>
                 </configuration>
             </plugin>
