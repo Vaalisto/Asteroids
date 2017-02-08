@@ -10,7 +10,8 @@ import javax.imageio.ImageIO;
  */
 public class Ship extends GameObj {
 
-    private static final double TURN_RATE = 0.00005;
+    private static final double TURN_RATE = 0.000001;
+    private static final double SPEED_LIMIT = 0.00003;
 
     boolean accelerating; // totuusarvo siitä kiihdyttääkö alus. Alus on ainoa objekti, joka voi kiihdyttää.
     boolean turningLeft, turningRight; // totuusarvo siitä kääntyykö alus. Alus on ainoa objekti, joka voi kääntyä.
@@ -27,13 +28,13 @@ public class Ship extends GameObj {
     public Ship(int x, int y) {
         this.x = x;
         this.y = y;
-        this.angle = 0;
+        this.angle = Math.PI/6;
         this.xVelocity = 0;
         this.yVelocity = 0;
-        this.acceleration = 0.35; //mielivaltainen arvo tällä hetkellä.
-        this.accelerating = false;
-        this.turningLeft = false; //väliaikainen arvo testausta varten
-        this.turningRight = true;
+        this.acceleration = 0.000000000005; //mielivaltainen arvo tällä hetkellä.
+        this.accelerating = true;
+        this.turningLeft = true; //väliaikainen arvo testausta varten
+        this.turningRight = false;
         this.img = null;
         try {
             this.img = ImageIO.read(getClass().getClassLoader().getResourceAsStream("ship.png"));
@@ -44,6 +45,11 @@ public class Ship extends GameObj {
 
     }
 
+    private double sumSpeedVector(double xComponent, double yComponent) {
+        return Math.sqrt((xComponent * xComponent) + (yComponent * yComponent));
+    }  
+     
+
     @Override
     public void move(int screenWidth, int screenHeight) {
         super.move(screenWidth, screenHeight);
@@ -52,6 +58,19 @@ public class Ship extends GameObj {
         }
         if (turningRight) {
             angle += TURN_RATE;
+        }
+        this.angleCheck(angle);
+        if (accelerating) {
+            double deltaXVel = acceleration * Math.sin(angle);
+            double deltaYVel = acceleration * Math.cos(angle);
+            double newXVel = xVelocity + deltaXVel;
+            double newYVel = yVelocity + deltaYVel;
+            double newSpeed = sumSpeedVector(newXVel, newYVel);
+            if (newSpeed < SPEED_LIMIT) {
+                xVelocity -= deltaXVel;
+                yVelocity += deltaYVel;
+            }
+            
         }
     }
 

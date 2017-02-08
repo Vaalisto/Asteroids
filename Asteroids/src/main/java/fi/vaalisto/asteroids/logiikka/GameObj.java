@@ -67,8 +67,17 @@ abstract class GameObj {
         this.yVelocity = yVelocity;
     }
 
-    public void setAngle(int angle) {
+    public void setAngle(double angle) {
         this.angle = angle;
+    }
+    
+    public void angleCheck(double angle) {
+        if (angle < 0) {
+            angle += 2 * Math.PI;
+        }
+        if (angle > (2 * Math.PI)) {
+            angle -= 2 * Math.PI;
+        }
     }
 
     public void move(int screenWidth, int screenHeight) {
@@ -91,7 +100,7 @@ abstract class GameObj {
         double xOffset = getX() - imageHalfWidth();
         double yOffset = getY() - imageHalfHeight();
         AffineTransform at = AffineTransform.getTranslateInstance(xOffset, yOffset);
-        at.rotate(Math.toRadians(angle), imageHalfWidth(), imageHalfHeight());
+        at.rotate(angle, imageHalfWidth(), imageHalfHeight());
         Graphics2D g2d = (Graphics2D) g;
         g2d.drawImage(img, at, null);
 

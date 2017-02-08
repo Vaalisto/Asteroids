@@ -16,7 +16,7 @@ public class Screen extends JPanel {
 
     private static final int NUMBER_OF_ASTEROIDS = 4;
     private static final int FPS = 60;
-    private static final double NANOS = 1000000000 / FPS;
+    private static final double NANOS = 1000 / FPS;
 
     public int w;
     public int h;
@@ -39,7 +39,6 @@ public class Screen extends JPanel {
 
     public void initShip() {
         ship = new Ship(w / 2, h / 2);
-//        ship.setxVelocity(0.00001);
     }
 
     public void initAsteroids() {
@@ -52,8 +51,8 @@ public class Screen extends JPanel {
     
     public void setAsteroidSpeed() { // testataan, että peli pyörii
         for (Asteroid a : asteroidlist) {
-            a.setxVelocity(0.000001);
-            a.setyVelocity(-0.000001);
+            a.setxVelocity(0.000002);
+            a.setyVelocity(-0.000002);
         }
     }
     
@@ -85,9 +84,9 @@ public class Screen extends JPanel {
     }
 
     public void run() {
-        long lastTime = System.nanoTime();
+        long lastTime = System.currentTimeMillis();
         while (running) {
-            long now = System.nanoTime();
+            long now = System.currentTimeMillis();
             delta += (now - lastTime) / NANOS;
             lastTime = now;
             while (delta >= 1) {
