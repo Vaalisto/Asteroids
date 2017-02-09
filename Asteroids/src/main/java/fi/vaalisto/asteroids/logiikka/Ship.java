@@ -5,14 +5,14 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 /**
- *
- * @author Ville Vaalisto
+ * Ship-luokka toteuttaa pelaajan ohjaaman aluksen. 
+ * 
  */
 public class Ship extends GameObj {
 
-    private static final double TURN_RATE = 0.000001;
-    private static final double SPEED_LIMIT = 0.00003;
-    private static final double ACCELERATION = 0.000000000005;
+    private static final double TURN_RATE = 0.000001; //aluksen kääntymisnopeus
+    private static final double SPEED_LIMIT = 0.00003; //aluksen maksiminopeus
+    private static final double ACCELERATION = 0.000000000005; //aluksen kiihtyvyys
 
     boolean accelerating; // totuusarvo siitä kiihdyttääkö alus. Alus on ainoa objekti, joka voi kiihdyttää.
     boolean turningLeft, turningRight; // totuusarvo siitä kääntyykö alus. Alus on ainoa objekti, joka voi kääntyä.
@@ -45,10 +45,25 @@ public class Ship extends GameObj {
 
     }
 
+    /**
+     * Lasketaan nopeuskomponenttien summavektorin pituus, jotta voidaan pitää
+     * se maksiminopeuden rajoissa.
+     *
+     * @param xComponent aluksen nopeuden x-komponentti
+     * @param yComponent aluksen nopeuden y-komponentti
+     * @return summavektorin pituus
+     */
     private double sumSpeedVector(double xComponent, double yComponent) {
         return Math.sqrt((xComponent * xComponent) + (yComponent * yComponent));
     }
 
+    /**
+     * Alukselle laajennettu liikkuminen. Alus on aina olio, joka voi kääntyä ja
+     * kiihtyä.     *
+     *
+     * @param screenWidth pelikentän leveys
+     * @param screenHeight peikentän korkeus
+     */
     @Override
     public void move(int screenWidth, int screenHeight) {
         super.move(screenWidth, screenHeight);

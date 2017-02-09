@@ -12,3 +12,4 @@ Päivä | Tunnit | Kuvaus
 06.02.2017 | 3h | Haettu yhä tietoa pelin reaaliaikaisesta toimimisesta ja saatu se alustavasti se toimimaan.
 07.02.2017 | 1h | Alus pyörii nyt akselinsa ympäri.
 08.02.2017 | 4h | Alus kiihtyy, sen nopeutta rajoitettu hienosäädetty koodia pikkuasioissa.
+09.02.2017 | 1h | Kirjoitettu javadoceja

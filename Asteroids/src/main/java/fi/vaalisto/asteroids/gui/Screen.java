@@ -9,14 +9,15 @@ import java.util.Random;
 import javax.swing.*;
 
 /**
+ * Screen-luokka toteuttaa pelikentän näkyvän osan ja myös aikasilmukan, joka
+ * mahdollistaa pelin reaaliaikaisen toiminnan.
  *
- * @author Ville Vaalisto
  */
 public class Screen extends JPanel {
 
-    private static final int NUMBER_OF_ASTEROIDS = 4;
-    private static final int FPS = 60;
-    private static final double NANOS = 1000 / FPS;
+    private static final int NUMBER_OF_ASTEROIDS = 4; //asteroidien määrä alussa
+    private static final int FPS = 60; //pelin päivitysnopeus
+    private static final double MILLIS = 1000 / FPS; //millisekunteja per kuvanpäivitys
 
     public int w;
     public int h;
@@ -26,6 +27,13 @@ public class Screen extends JPanel {
     private boolean running = true;
     private double delta = 0;
 
+    /**
+     * Konstruktori asettaa pelikentän leveyden, taustavärin ja alustaa
+     * asteroidit sekä pelaajan aluksen.
+     *
+     * @param w haluttu pelikentän leveys
+     * @param h haluttu pelikentän korkeus
+     */
     public Screen(int w, int h) {
         this.w = w;
         this.h = h;
@@ -34,13 +42,19 @@ public class Screen extends JPanel {
         super.setSize(w, h);
         initShip();
         initAsteroids();
-//        setAsteroidSpeed();
     }
 
+    /**
+     * Asettaa pelaajan aluksen pelikentän keskelle.
+     */
     public void initShip() {
         ship = new Ship(w / 2, h / 2);
     }
 
+    /**
+     * Alustaa halutun määrän uusia asteroideja ja satunnaisgeneroi niiden
+     * sijainnit.
+     */
     public void initAsteroids() {
         for (int i = 0; i < NUMBER_OF_ASTEROIDS; i++) {
             int randomX = (int) (Math.random() * w);
@@ -49,17 +63,20 @@ public class Screen extends JPanel {
         }
     }
 
-    public void setAsteroidSpeed() { // testataan, että peli pyörii
-        for (Asteroid a : asteroidlist) {
-            a.setxVelocity(0.000002);
-            a.setyVelocity(-0.000002);
-        }
-    }
-
+    /**
+     * Aluksen piirtämiseen mahdollistava metodi.
+     *
+     * @param g grafiikkaan tarvittava luokka
+     */
     public void drawShip(Graphics g) {
         this.ship.draw(g);
     }
 
+    /**
+     * Käydään läpi kaikki asteroidit ja piirretään ne.
+     *
+     * @param g grafiikkaan tarvittava luokka
+     */
     public void drawAsteroids(Graphics g) {
         if (!asteroidlist.isEmpty()) {
             for (Asteroid a : asteroidlist) {
@@ -68,6 +85,9 @@ public class Screen extends JPanel {
         }
     }
 
+    /**
+     * Liikutetaan jokaista asteroidia.
+     */
     public void updateAsteroids() {
         if (!asteroidlist.isEmpty()) {
             for (Asteroid a : asteroidlist) {
@@ -76,16 +96,22 @@ public class Screen extends JPanel {
         }
     }
 
+    /**
+     * Liikutetaan pelikentän kaikkia tarvittavia olioita
+     */
     public void update() {
         ship.move(w, h);
         updateAsteroids();
     }
 
+    /**
+     * Pelin reaaliaikaisen toiminnan mahdollistava metodi.
+     */
     public void run() {
         long lastTime = System.currentTimeMillis();
         while (running) {
             long now = System.currentTimeMillis();
-            delta += (now - lastTime) / NANOS;
+            delta += (now - lastTime) / MILLIS;
             lastTime = now;
             while (delta >= 1) {
                 update();
@@ -94,6 +120,11 @@ public class Screen extends JPanel {
         }
     }
 
+    /**
+     * JPanelilta peritty metodi, joka piirtää kaikki graafiset komponentit
+     *
+     * @param g grafiikkaan tarvittava luokka
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

@@ -5,15 +5,24 @@ import java.util.Random;
 import javax.imageio.ImageIO;
 
 /**
+ * Asteroidi-luokka toteuttaa asteroidit, joita pelaaja yrittää väistellä ja
+ * tuhota
  *
- * @author Ville Vaalisto
  */
 public class Asteroid extends GameObj {
 
+    
+    /**
+     * Asteroidin konstruktori, joka asettaa sen haluttiin pisteeseen, lataa kuvan
+     * ja generoi sille satunnaisen nopeuden ja sen suunnan.
+     * 
+     * @param x asteroidin aloituspaikan x-koordinaatti
+     * @param y asteroidin aloituspaikan y-koordinaatti
+     */
     public Asteroid(int x, int y) {
         this.x = x;
         this.y = y;
-        this.angle = 0;        
+        this.angle = 0;
         this.img = null;
         try {
             this.img = ImageIO.read(getClass().getClassLoader().getResourceAsStream("asteroid.png"));
