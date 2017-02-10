@@ -11,11 +11,10 @@ import javax.imageio.ImageIO;
  */
 public class Asteroid extends GameObj {
 
-    
     /**
-     * Asteroidin konstruktori, joka asettaa sen haluttiin pisteeseen, lataa kuvan
-     * ja generoi sille satunnaisen nopeuden ja sen suunnan.
-     * 
+     * Asteroidin konstruktori, joka asettaa sen haluttiin pisteeseen, lataa
+     * kuvan ja generoi sille satunnaisen nopeuden ja sen suunnan.
+     *
      * @param x asteroidin aloituspaikan x-koordinaatti
      * @param y asteroidin aloituspaikan y-koordinaatti
      */
@@ -32,6 +31,9 @@ public class Asteroid extends GameObj {
         randomizeAsterdoid();
     }
 
+    /**
+     * Arvotaan asteroidille satunnaiset nopeusvektorit.
+     */
     private void randomizeAsterdoid() {
         Random r = new Random();
 

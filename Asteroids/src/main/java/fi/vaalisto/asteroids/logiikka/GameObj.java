@@ -18,66 +18,30 @@ abstract class GameObj {
     boolean active; //totuusarvo, jota voidaan käyttää pelin tauottamiseksi
     BufferedImage img;
 
-    /**
-     * Palauttaa olion x-koordinaatti.
-     *
-     * @return olion paikan x-koordinaatti
-     */
     public double getX() {
         return x;
     }
 
-    /**
-     * Palauttaa olion y-koordinaatti.
-     *
-     * @return olion paikan y-koordinaatti
-     */
     public double getY() {
         return y;
     }
 
-    /**
-     * Palauttaa olion suunnan kulma radiaaneina. Nolla kulma on alaspäin.
-     *
-     * @return olion suunta radiaaneina
-     */
     public double getAngle() {
         return angle;
     }
 
-    /**
-     * Palauttaa olion nopeuden x-komponentti.
-     *
-     * @return olion nopeus x-akselilla
-     */
     public double getxVelocity() {
         return xVelocity;
     }
 
-    /**
-     * Palauttaa olion nopeuden x-komponentti.
-     *
-     * @return olion nopeus x-akselilla
-     */
     public double getyVelocity() {
         return yVelocity;
     }
 
-    /**
-     * Palauttaa oliolle ladatun kuvan.
-     *
-     * @return olion BufferedImage
-     */
     public BufferedImage getImage() {
         return img;
     }
 
-    /**
-     * Palauttaa totuusarvon onko olio aktiivinen. Käytetään pelin taukotilan
-     * mahdollistamiseksi.
-     *
-     * @return olion aktiivisuus totuusarvona
-     */
     public boolean isActive() {
         return active;
     }
@@ -102,29 +66,14 @@ abstract class GameObj {
         return img.getHeight() / 2;
     }
 
-    /**
-     * Asetetaan olion nopeuden x-komponentti.
-     *
-     * @param xVelocity
-     */
     public void setxVelocity(double xVelocity) {
         this.xVelocity = xVelocity;
     }
 
-    /**
-     * Asetetaan olion nopeuden y-komponentti.
-     *
-     * @param yVelocity
-     */
     public void setyVelocity(double yVelocity) {
         this.yVelocity = yVelocity;
     }
 
-    /**
-     * Asetetaan olion kulma radiaaneina.
-     *
-     * @param angle
-     */
     public void setAngle(double angle) {
         this.angle = angle;
         angleCheck();

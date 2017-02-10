@@ -5,8 +5,8 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 /**
- * Ship-luokka toteuttaa pelaajan ohjaaman aluksen. 
- * 
+ * Ship-luokka toteuttaa pelaajan ohjaaman aluksen.
+ *
  */
 public class Ship extends GameObj {
 
@@ -32,7 +32,7 @@ public class Ship extends GameObj {
         this.angle = 0;
         this.xVelocity = 0;
         this.yVelocity = 0;
-        this.accelerating = true;
+        this.accelerating = true; //väliaikainen arvo testausta varten
         this.turningLeft = true; //väliaikainen arvo testausta varten
         this.turningRight = false;
         this.img = null;
@@ -43,6 +43,30 @@ public class Ship extends GameObj {
             System.out.println("Ship picture missing!");
         }
 
+    }
+
+    public boolean isAccelerating() {
+        return accelerating;
+    }
+
+    public void setAccelerating(boolean accelerating) {
+        this.accelerating = accelerating;
+    }
+
+    public boolean isTurningLeft() {
+        return turningLeft;
+    }
+
+    public void setTurningLeft(boolean turningLeft) {
+        this.turningLeft = turningLeft;
+    }
+
+    public boolean isTurningRight() {
+        return turningRight;
+    }
+
+    public void setTurningRight(boolean turningRight) {
+        this.turningRight = turningRight;
     }
 
     /**
@@ -59,7 +83,7 @@ public class Ship extends GameObj {
 
     /**
      * Alukselle laajennettu liikkuminen. Alus on aina olio, joka voi kääntyä ja
-     * kiihtyä.     *
+     * kiihtyä. *
      *
      * @param screenWidth pelikentän leveys
      * @param screenHeight peikentän korkeus

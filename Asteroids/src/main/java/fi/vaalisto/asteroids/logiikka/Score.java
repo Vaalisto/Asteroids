@@ -26,20 +26,10 @@ public class Score implements Comparable<Score> {
         this.name = name;
     }
 
-    /**
-     * Palauttaa olion pistemäärän.
-     *
-     * @return pisteet
-     */
     public int getScore() {
         return score;
     }
 
-    /**
-     * Palauttaa olion nimen.
-     *
-     * @return nimi
-     */
     public String getName() {
         return name;
     }
