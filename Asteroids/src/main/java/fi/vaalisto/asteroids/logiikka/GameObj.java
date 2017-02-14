@@ -100,8 +100,8 @@ abstract class GameObj {
      * @param screenHeight pelikentän korkeus
      */
     public void move(int screenWidth, int screenHeight) {
-        x += xVelocity;
-        y += yVelocity;
+//        x += xVelocity;
+//        y += yVelocity;
         x = borderCheck(x, screenWidth);
         y = borderCheck(y, screenHeight);
     }

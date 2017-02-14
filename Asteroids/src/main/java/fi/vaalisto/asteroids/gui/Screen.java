@@ -23,6 +23,7 @@ public class Screen extends JPanel {
     public int h;
     public Ship ship;
     public ArrayList<Asteroid> asteroidlist;
+    public GameKeyListener keylistener;
 
     private boolean running = true;
     private double delta = 0;
@@ -40,8 +41,11 @@ public class Screen extends JPanel {
         this.asteroidlist = new ArrayList<Asteroid>();
         this.setBackground(Color.BLUE); //toistaiseksi sininen, jotta näkee objektit paremmin
         super.setSize(w, h);
+        this.setFocusable(true); //näppäimistökuuntelija ei toimi ilman tätä
+        this.requestFocusInWindow(); //näppäimistökuuntelija ei toimi ilman tätä
         initShip();
         initAsteroids();
+        initKeyListener();
     }
 
     /**
@@ -61,6 +65,15 @@ public class Screen extends JPanel {
             int randomY = (int) (Math.random() * h);
             asteroidlist.add(new Asteroid(randomX, randomY));
         }
+    }
+    
+    /**
+     * Alustaa näppäimistökuuntelijan.
+     */
+
+    public void initKeyListener() {
+        keylistener = new GameKeyListener(ship);
+        this.addKeyListener(keylistener);
     }
 
     /**

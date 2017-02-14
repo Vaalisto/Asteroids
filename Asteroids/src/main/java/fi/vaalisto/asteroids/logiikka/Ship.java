@@ -32,8 +32,8 @@ public class Ship extends GameObj {
         this.angle = 0;
         this.xVelocity = 0;
         this.yVelocity = 0;
-        this.accelerating = true; //väliaikainen arvo testausta varten
-        this.turningLeft = true; //väliaikainen arvo testausta varten
+        this.accelerating = false; //väliaikainen arvo testausta varten
+        this.turningLeft = false; //väliaikainen arvo testausta varten
         this.turningRight = false;
         this.img = null;
         try {
