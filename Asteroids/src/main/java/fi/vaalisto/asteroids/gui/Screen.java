@@ -13,16 +13,18 @@ import javax.swing.*;
  * mahdollistaa pelin reaaliaikaisen toiminnan.
  *
  */
-public class Screen extends JPanel {
+public class Screen extends JPanel implements Runnable {
 
     private static final int NUMBER_OF_ASTEROIDS = 4; //asteroidien määrä alussa
     private static final int FPS = 60; //pelin päivitysnopeus
     private static final double MILLIS = 1000 / FPS; //millisekunteja per kuvanpäivitys
+    private static final long FRAME_TIME = 25;
 
     public int w;
     public int h;
     public Ship ship;
     public ArrayList<Asteroid> asteroidlist;
+    public ArrayList<Shot> shotlist;
     public GameKeyListener keylistener;
 
     private boolean running = true;
@@ -39,6 +41,7 @@ public class Screen extends JPanel {
         this.w = w;
         this.h = h;
         this.asteroidlist = new ArrayList<Asteroid>();
+        this.shotlist = new ArrayList<Shot>();
         this.setBackground(Color.BLUE); //toistaiseksi sininen, jotta näkee objektit paremmin
         super.setSize(w, h);
         this.setFocusable(true); //näppäimistökuuntelija ei toimi ilman tätä
@@ -66,11 +69,10 @@ public class Screen extends JPanel {
             asteroidlist.add(new Asteroid(randomX, randomY));
         }
     }
-    
+
     /**
      * Alustaa näppäimistökuuntelijan.
      */
-
     public void initKeyListener() {
         keylistener = new GameKeyListener(ship);
         this.addKeyListener(keylistener);
@@ -108,13 +110,34 @@ public class Screen extends JPanel {
             }
         }
     }
+    
+    public void shipShoots() {
+        if (ship.isShooting()) {
+            shotlist.add(new Shot(ship.getX(), ship.getY(), ship.getAngle(), ship.getxVelocity(), ship.getyVelocity()));
+        }
+    }
+
+    public void updateShots() {
+        Shot remove = null;
+        if (!shotlist.isEmpty()) {
+            for (Shot s : shotlist) {
+                s.move(w, h);
+                if (s.getLife() <= 0) {
+                    remove = s;
+                }
+            }
+        }
+        shotlist.remove(remove);
+    }
 
     /**
      * Liikutetaan pelikentän kaikkia tarvittavia olioita
      */
     public void update() {
         ship.move(w, h);
+        shipShoots();
         updateAsteroids();
+        updateShots();
     }
 
     /**

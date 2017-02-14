@@ -16,6 +16,7 @@ public class Ship extends GameObj {
 
     boolean accelerating; // totuusarvo siitä kiihdyttääkö alus. Alus on ainoa objekti, joka voi kiihdyttää.
     boolean turningLeft, turningRight; // totuusarvo siitä kääntyykö alus. Alus on ainoa objekti, joka voi kääntyä.
+    boolean shooting;
 
     /**
      * Ship-luokan konstruktori. Nämä jätetään muuttujiksi ja aluksen speksejä
@@ -35,6 +36,7 @@ public class Ship extends GameObj {
         this.accelerating = false; //väliaikainen arvo testausta varten
         this.turningLeft = false; //väliaikainen arvo testausta varten
         this.turningRight = false;
+        this.shooting = false;
         this.img = null;
         try {
             this.img = ImageIO.read(getClass().getClassLoader().getResourceAsStream("ship.png"));
@@ -68,6 +70,17 @@ public class Ship extends GameObj {
     public void setTurningRight(boolean turningRight) {
         this.turningRight = turningRight;
     }
+
+    public boolean isShooting() {
+        return shooting;
+    }
+
+    public void setShooting(boolean shooting) {
+        this.shooting = shooting;
+    }
+
+    
+    
 
     /**
      * Lasketaan nopeuskomponenttien summavektorin pituus, jotta voidaan pitää

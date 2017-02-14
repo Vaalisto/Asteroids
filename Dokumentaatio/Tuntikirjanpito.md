@@ -14,4 +14,4 @@ Päivä | Tunnit | Kuvaus
 08.02.2017 | 4h | Alus kiihtyy, sen nopeutta rajoitettu. Hienosäädetty koodia pikkuasioissa.
 09.02.2017 | 1h | Kirjoitettu javadoceja
 10.02.2017 | 2h | Tehty lisää testejä ja javadoceja palautusta varten. Tutkittu näppäimistökuuntelijan toteutusta.
-14.02.2017 | 1h | Näppäimistökuuntelija toimii nyt. Aluksen liike aika erikoinen vielä.
+14.02.2017 | 2h | Näppäimistökuuntelija toimii nyt. Aluksen liike aika erikoinen vielä ja koodattu ampumistoimintoa.

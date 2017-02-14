@@ -27,6 +27,9 @@ public class GameKeyListener implements KeyListener {
         if (e.getKeyCode() == KeyEvent.VK_UP) {
             ship.setAccelerating(true);
         }
+        if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+            ship.setShooting(true);
+        }
     }
     
     @Override
@@ -39,6 +42,9 @@ public class GameKeyListener implements KeyListener {
         }
         if (e.getKeyCode() == KeyEvent.VK_UP) {
             ship.setAccelerating(false);
+        }
+        if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+            ship.setShooting(false);
         }
     }
 
