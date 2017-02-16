@@ -35,7 +35,7 @@ public class Score implements Comparable<Score> {
     }
 
     /**
-     * Verrataan olioden pistemäärää ja saadaan
+     * Verrataan olioden pistemäärää ja saadaan.
      *
      * @param o verrattava olio
      * @return -1, 0 tai 1 riippuen vertailun tuloksesta

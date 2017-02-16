@@ -6,7 +6,7 @@ import javax.imageio.ImageIO;
 
 /**
  * Asteroidi-luokka toteuttaa asteroidit, joita pelaaja yrittää väistellä ja
- * tuhota
+ * tuhota.
  *
  */
 public class Asteroid extends GameObj {

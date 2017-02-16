@@ -104,7 +104,7 @@ public class Screen extends JPanel implements Runnable {
     }
 
     /**
-     * Käydään läpi kaikki ammukset ja piirretään ne
+     * Käydään läpi kaikki ammukset ja piirretään ne.
      *
      * @param g grafiikkaan tarvittava luokka
      */
@@ -144,7 +144,7 @@ public class Screen extends JPanel implements Runnable {
     }
 
     /**
-     * Liikutetaan pelikentän kaikkia tarvittavia olioita
+     * Liikutetaan pelikentän kaikkia tarvittavia olioita.
      */
     public void update() {
         ship.move(w, h);
@@ -169,7 +169,7 @@ public class Screen extends JPanel implements Runnable {
     }
 
     /**
-     * JPanelilta peritty metodi, joka piirtää kaikki graafiset komponentit
+     * JPanelilta peritty metodi, joka piirtää kaikki graafiset komponentit.
      *
      * @param g grafiikkaan tarvittava luokka
      */
