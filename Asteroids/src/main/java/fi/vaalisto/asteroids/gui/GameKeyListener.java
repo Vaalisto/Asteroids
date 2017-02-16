@@ -1,56 +1,62 @@
 package fi.vaalisto.asteroids.gui;
 
+import fi.vaalisto.asteroids.logiikka.Asteroid;
 import fi.vaalisto.asteroids.logiikka.Ship;
+import fi.vaalisto.asteroids.logiikka.Shot;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 /**
  * GameKeyListener on luokka, jonka avulla rekisteröidään pelaajan näppäinten
- * painallukset. * 
+ * painallukset. *
  */
 public class GameKeyListener implements KeyListener {
     
     Ship ship;
-    
-    public GameKeyListener(Ship ship) {
+    Screen screen;
+    int shotlimit;
+
+    public GameKeyListener(Ship ship, Screen screen, int shotlimit) {
         this.ship = ship;
+        this.screen = screen;
+        this.shotlimit = shotlimit;
     }
-    
+
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            ship.setTurningLeft(true);            
+            ship.setTurningLeft(true);
         }
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            ship.setTurningRight(true);            
+            ship.setTurningRight(true);
         }
         if (e.getKeyCode() == KeyEvent.VK_UP) {
             ship.setAccelerating(true);
         }
         if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-            ship.setShooting(true);
+            if (screen.shotlist.size() < shotlimit) {
+                screen.shotlist.add(new Shot(ship.getX(), ship.getY(), ship.getAngle(), ship.getxVelocity(), ship.getyVelocity()));
+
+            }
         }
     }
-    
+
     @Override
     public void keyReleased(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            ship.setTurningLeft(false);            
+            ship.setTurningLeft(false);
         }
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            ship.setTurningRight(false);            
+            ship.setTurningRight(false);
         }
         if (e.getKeyCode() == KeyEvent.VK_UP) {
             ship.setAccelerating(false);
-        }
-        if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-            ship.setShooting(false);
         }
     }
 
     @Override
     public void keyTyped(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
-    
+
 }

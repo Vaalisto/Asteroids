@@ -13,9 +13,9 @@ import javax.imageio.ImageIO;
  * @author Ville Vaalisto
  */
 public class Shot extends GameObj {
-    
-    private static final int SHOT_SPEED = 8;
-    private static final int INITIAL_LIFE = 40;
+
+    private static final double SHOT_SPEED = 0.00004;
+    private static final int INITIAL_LIFE = 10000000; // Ammuksen elinajan avulla saadaan niille tietty kantama.
 
     private int life;
 
@@ -23,8 +23,8 @@ public class Shot extends GameObj {
         this.x = x;
         this.y = y;
         this.angle = angle;
-        this.xVelocity = SHOT_SPEED * xVelocity;
-        this.yVelocity = SHOT_SPEED * yVelocity;
+        this.xVelocity = -SHOT_SPEED * Math.sin(angle);
+        this.yVelocity = SHOT_SPEED * Math.cos(angle);
         this.life = INITIAL_LIFE;
         this.img = null;
         try {
@@ -37,7 +37,7 @@ public class Shot extends GameObj {
     public int getLife() {
         return life;
     }
-    
+
     @Override
     public void move(int screenWidth, int screenHeight) {
         super.move(screenWidth, screenHeight);

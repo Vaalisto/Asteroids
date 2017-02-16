@@ -4,6 +4,7 @@ import fi.vaalisto.asteroids.logiikka.*;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.ListIterator;
 import java.util.Random;
 import javax.swing.*;
@@ -17,8 +18,10 @@ public class Screen extends JPanel implements Runnable {
 
     private static final int NUMBER_OF_ASTEROIDS = 4; //asteroidien määrä alussa
     private static final int FPS = 60; //pelin päivitysnopeus
+    private static final int SHOT_LIMIT = 5; // yhtäaikaisten ammusten maksimimäärä
     private static final double MILLIS = 1000 / FPS; //millisekunteja per kuvanpäivitys
     private static final long FRAME_TIME = 25;
+    
 
     public int w;
     public int h;
@@ -74,7 +77,7 @@ public class Screen extends JPanel implements Runnable {
      * Alustaa näppäimistökuuntelijan.
      */
     public void initKeyListener() {
-        keylistener = new GameKeyListener(ship);
+        keylistener = new GameKeyListener(ship, this, SHOT_LIMIT);
         this.addKeyListener(keylistener);
     }
 
@@ -101,6 +104,19 @@ public class Screen extends JPanel implements Runnable {
     }
 
     /**
+     * Käydään läpi kaikki ammukset ja piirretään ne
+     *
+     * @param g grafiikkaan tarvittava luokka
+     */
+    public void drawShots(Graphics g) {
+        if (!shotlist.isEmpty()) {
+            for (Shot s : shotlist) {
+                s.draw(g);
+            }
+        }
+    }
+
+    /**
      * Liikutetaan jokaista asteroidia.
      */
     public void updateAsteroids() {
@@ -110,13 +126,10 @@ public class Screen extends JPanel implements Runnable {
             }
         }
     }
-    
-    public void shipShoots() {
-        if (ship.isShooting()) {
-            shotlist.add(new Shot(ship.getX(), ship.getY(), ship.getAngle(), ship.getxVelocity(), ship.getyVelocity()));
-        }
-    }
 
+    /**
+     * Liikutetaan jokaista ammusta.
+     */
     public void updateShots() {
         Shot remove = null;
         if (!shotlist.isEmpty()) {
@@ -135,7 +148,6 @@ public class Screen extends JPanel implements Runnable {
      */
     public void update() {
         ship.move(w, h);
-        shipShoots();
         updateAsteroids();
         updateShots();
     }
@@ -164,7 +176,8 @@ public class Screen extends JPanel implements Runnable {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        drawShip(g);
+        drawShip(g);        
         drawAsteroids(g);
+        drawShots(g);
     }
 }
