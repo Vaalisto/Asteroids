@@ -13,5 +13,7 @@
 * Pistelaskuriin kertyy pisteitä, kun ammuttu ammus tuhoaa asteroideja
 * Pistetulos tallentuu ja sen yhteyteen voi kirjoittaa nimensä.
 
+**Ohjeet:** Nuolet sivuille kääntävät alusta, nuoli ylös kiihdyttää ja välilyönti ampuu.
+
 ### Luokkakaavio
 ![Luokkakaavio](Luokkakaavio.png)

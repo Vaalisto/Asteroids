@@ -131,16 +131,16 @@ public class Screen extends JPanel implements Runnable {
      * Liikutetaan jokaista ammusta.
      */
     public void updateShots() {
-        Shot remove = null;
+        Shot deadshot = null;
         if (!shotlist.isEmpty()) {
             for (Shot s : shotlist) {
                 s.move(w, h);
                 if (s.getLife() <= 0) {
-                    remove = s;
+                    deadshot = s;
                 }
             }
         }
-        shotlist.remove(remove);
+        shotlist.remove(deadshot);
     }
 
     /**
