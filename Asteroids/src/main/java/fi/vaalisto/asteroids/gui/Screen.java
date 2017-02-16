@@ -45,7 +45,7 @@ public class Screen extends JPanel implements Runnable {
         this.h = h;
         this.asteroidlist = new ArrayList<Asteroid>();
         this.shotlist = new ArrayList<Shot>();
-        this.setBackground(Color.BLUE); //toistaiseksi sininen, jotta näkee objektit paremmin
+        this.setBackground(Color.BLACK); //toistaiseksi sininen, jotta näkee objektit paremmin
         super.setSize(w, h);
         this.setFocusable(true); //näppäimistökuuntelija ei toimi ilman tätä
         this.requestFocusInWindow(); //näppäimistökuuntelija ei toimi ilman tätä
