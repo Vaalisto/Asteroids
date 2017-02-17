@@ -19,8 +19,7 @@ public class Screen extends JPanel implements Runnable {
     private static final int NUMBER_OF_ASTEROIDS = 4; //asteroidien määrä alussa
     private static final int FPS = 60; //pelin päivitysnopeus
     private static final int SHOT_LIMIT = 5; // yhtäaikaisten ammusten maksimimäärä
-    private static final double MILLIS = 1000 / FPS; //millisekunteja per kuvanpäivitys
-    private static final long FRAME_TIME = 25;
+    private static final double MILLIS = 1000 / FPS; //millisekunteja per kuvanpäivitys    
 
     public int w;
     public int h;
@@ -32,6 +31,7 @@ public class Screen extends JPanel implements Runnable {
 
     private boolean running = true;
     private double delta = 0;
+    private Thread gameThread;
 
     /**
      * Konstruktori asettaa pelikentän leveyden, taustavärin ja alustaa
@@ -139,9 +139,9 @@ public class Screen extends JPanel implements Runnable {
                     deadshotlist.add(s);
                 }
             }
-        }        
+        }
     }
-    
+
     public void cleanShots() {
         if (!deadshotlist.isEmpty()) {
             shotlist.removeAll(deadshotlist);
@@ -168,17 +168,36 @@ public class Screen extends JPanel implements Runnable {
     /**
      * Pelin reaaliaikaisen toiminnan mahdollistava metodi.
      */
+    @Override
     public void run() {
-        long lastTime = System.currentTimeMillis();
         while (running) {
-            long now = System.currentTimeMillis();
-            delta += (now - lastTime) / MILLIS;
-            lastTime = now;
-            while (delta >= 1) {
-                update();
-                this.repaint();
+            long start = System.currentTimeMillis();
+            update();
+            this.repaint();
+            float deltaTime = (System.currentTimeMillis() - start);
+            int sleepTime = (int) (MILLIS - deltaTime);
+            if (sleepTime > 0) {
+                try {
+                    Thread.sleep(sleepTime);
+                } catch (InterruptedException e) {
+                }
             }
+            while (sleepTime < 0) {
+                update();
+                sleepTime += MILLIS;
+            }
+
         }
+//        long lastTime = System.currentTimeMillis();
+//        while (running) {
+//            long now = System.currentTimeMillis();
+//            delta += (now - lastTime) / MILLIS;
+//            lastTime = now;
+//            while (delta >= 1) {
+//                update();
+//                this.repaint();
+//            }
+//        }
     }
 
     /**
