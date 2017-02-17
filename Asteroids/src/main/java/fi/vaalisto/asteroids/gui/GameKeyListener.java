@@ -11,15 +11,11 @@ import java.awt.event.KeyListener;
  * painallukset. *
  */
 public class GameKeyListener implements KeyListener {
-    
-    Ship ship;
-    Screen screen;
-    int shotlimit;
 
-    public GameKeyListener(Ship ship, Screen screen, int shotlimit) {
+    Ship ship;
+
+    public GameKeyListener(Ship ship) {
         this.ship = ship;
-        this.screen = screen;
-        this.shotlimit = shotlimit;
     }
 
     @Override
@@ -34,10 +30,7 @@ public class GameKeyListener implements KeyListener {
             ship.setAccelerating(true);
         }
         if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-            if (screen.shotlist.size() < shotlimit) {
-                screen.shotlist.add(new Shot(ship.getX(), ship.getY(), ship.getAngle(), ship.getxVelocity(), ship.getyVelocity()));
-
-            }
+            ship.setShooting(true);
         }
     }
 
@@ -51,6 +44,9 @@ public class GameKeyListener implements KeyListener {
         }
         if (e.getKeyCode() == KeyEvent.VK_UP) {
             ship.setAccelerating(false);
+        }
+        if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+            ship.setShooting(false);
         }
     }
 

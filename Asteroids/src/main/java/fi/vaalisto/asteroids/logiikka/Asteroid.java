@@ -10,6 +10,8 @@ import javax.imageio.ImageIO;
  *
  */
 public class Asteroid extends GameObj {
+    
+    private static final String IMG_NAME = "asteroid.png";
 
     /**
      * Asteroidin konstruktori, joka asettaa sen haluttiin pisteeseen, lataa
@@ -24,7 +26,7 @@ public class Asteroid extends GameObj {
         this.angle = 0;
         this.img = null;
         try {
-            this.img = ImageIO.read(getClass().getClassLoader().getResourceAsStream("asteroid.png"));
+            this.img = ImageIO.read(getClass().getClassLoader().getResourceAsStream(IMG_NAME));
         } catch (IOException e) {
             System.out.println("Asteroid picture missing!");
         }

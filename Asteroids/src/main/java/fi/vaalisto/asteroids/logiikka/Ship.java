@@ -13,10 +13,13 @@ public class Ship extends GameObj {
     private static final double TURN_RATE = 0.000001; //aluksen kääntymisnopeus
     private static final double SPEED_LIMIT = 0.00003; //aluksen maksiminopeus
     private static final double ACCELERATION = 0.000000000005; //aluksen kiihtyvyys
+    private static final int SHOOT_DELAY_RESET = 200;
+    private static final String IMG_NAME = "ship.png";
 
-    boolean accelerating; // totuusarvo siitä kiihdyttääkö alus. Alus on ainoa objekti, joka voi kiihdyttää.
-    boolean turningLeft, turningRight; // totuusarvo siitä kääntyykö alus. Alus on ainoa objekti, joka voi kääntyä.
-    boolean shooting;
+    public boolean accelerating; // totuusarvo siitä kiihdyttääkö alus. Alus on ainoa objekti, joka voi kiihdyttää.
+    public boolean turningLeft, turningRight; // totuusarvo siitä kääntyykö alus. Alus on ainoa objekti, joka voi kääntyä.
+    public boolean shooting;
+    public int shootDelay;
 
     /**
      * Ship-luokan konstruktori. Nämä jätetään muuttujiksi ja aluksen speksejä
@@ -37,9 +40,10 @@ public class Ship extends GameObj {
         this.turningLeft = false; //väliaikainen arvo testausta varten
         this.turningRight = false;
         this.shooting = false;
+        this.shootDelay = 0;
         this.img = null;
         try {
-            this.img = ImageIO.read(getClass().getClassLoader().getResourceAsStream("ship.png"));
+            this.img = ImageIO.read(getClass().getClassLoader().getResourceAsStream(IMG_NAME));
 
         } catch (IOException e) {
             System.out.println("Ship picture missing!");
@@ -79,8 +83,14 @@ public class Ship extends GameObj {
         this.shooting = shooting;
     }
 
-    
-    
+    public int getShootDelay() {
+        return shootDelay;
+    }
+
+    public Shot shoots() {
+        this.shootDelay = SHOOT_DELAY_RESET;
+        return new Shot(this.x, this.y, this.angle);
+    }
 
     /**
      * Lasketaan nopeuskomponenttien summavektorin pituus, jotta voidaan pitää
@@ -110,7 +120,7 @@ public class Ship extends GameObj {
         if (turningRight) {
             angle += TURN_RATE;
         }
-        angleCheck();        
+        angleCheck();
         if (accelerating) {
             double deltaXVel = ACCELERATION * Math.sin(angle);
             double deltaYVel = ACCELERATION * Math.cos(angle);
@@ -122,6 +132,9 @@ public class Ship extends GameObj {
                 yVelocity += deltaYVel;
             }
 
+        }
+        if (shootDelay > 0) {
+            shootDelay--;
         }
     }
 

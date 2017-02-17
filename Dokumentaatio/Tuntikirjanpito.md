@@ -15,3 +15,5 @@ Päivä | Tunnit | Kuvaus
 09.02.2017 | 1h | Kirjoitettu javadoceja
 10.02.2017 | 2h | Tehty lisää testejä ja javadoceja palautusta varten. Tutkittu näppäimistökuuntelijan toteutusta.
 14.02.2017 | 2h | Näppäimistökuuntelija toimii nyt. Aluksen liike aika erikoinen vielä ja koodattu ampumistoimintoa.
+16.02.2017 | 2h | Ampuminen toimii alustavasti, mutta generoi virheitä. Hienosäädetty grafiikoita.
+17.02.2017 | 1h | Yritetty päästä ampumisen luomista virheistä eroon toistaiseksi onnistumatta.

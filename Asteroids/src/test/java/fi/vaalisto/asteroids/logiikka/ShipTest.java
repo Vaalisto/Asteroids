@@ -48,8 +48,6 @@ public class ShipTest {
     @Test
     public void shipMoves() {
         ship1.setAccelerating(true);
-        ship2.setTurningLeft(false);
-        ship2.setTurningRight(true);
         ship2.setAccelerating(false);
         ship1.xVelocity = 0.00002;
         ship1.yVelocity = -0.00002;
@@ -58,8 +56,7 @@ public class ShipTest {
         ship2.move(800, 600);
         assertEquals(100.00002, ship1.getX(), 0.0);
         assertEquals(99.99998, ship1.getY(), 0.0);
-        assertEquals(6.28, ship1.getAngle(), 0.01);
         assertEquals(9.99997, ship2.getX(), 0.0);
-        assertEquals(0.000001, ship2.getAngle(), 0.0);
+
     }
 }

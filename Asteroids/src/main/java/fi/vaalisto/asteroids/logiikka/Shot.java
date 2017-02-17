@@ -16,10 +16,11 @@ public class Shot extends GameObj {
 
     private static final double SHOT_SPEED = 0.00004;
     private static final int INITIAL_LIFE = 10000000; // Ammuksen elinajan avulla saadaan niille tietty kantama.
+    private static final String IMG_NAME = "shot.png";
 
     private int life;
 
-    public Shot(double x, double y, double angle, double xVelocity, double yVelocity) {
+    public Shot(double x, double y, double angle) {
         this.x = x;
         this.y = y;
         this.angle = angle;
@@ -28,7 +29,7 @@ public class Shot extends GameObj {
         this.life = INITIAL_LIFE;
         this.img = null;
         try {
-            this.img = ImageIO.read(getClass().getClassLoader().getResourceAsStream("shot.png"));
+            this.img = ImageIO.read(getClass().getClassLoader().getResourceAsStream(IMG_NAME));
         } catch (IOException e) {
             System.out.println("Shot picture missing!");
         }

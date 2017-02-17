@@ -21,13 +21,13 @@ public class Screen extends JPanel implements Runnable {
     private static final int SHOT_LIMIT = 5; // yhtäaikaisten ammusten maksimimäärä
     private static final double MILLIS = 1000 / FPS; //millisekunteja per kuvanpäivitys
     private static final long FRAME_TIME = 25;
-    
 
     public int w;
     public int h;
     public Ship ship;
     public ArrayList<Asteroid> asteroidlist;
     public ArrayList<Shot> shotlist;
+    public ArrayList<Shot> deadshotlist;
     public GameKeyListener keylistener;
 
     private boolean running = true;
@@ -45,7 +45,8 @@ public class Screen extends JPanel implements Runnable {
         this.h = h;
         this.asteroidlist = new ArrayList<Asteroid>();
         this.shotlist = new ArrayList<Shot>();
-        this.setBackground(Color.BLACK); //toistaiseksi sininen, jotta näkee objektit paremmin
+        this.deadshotlist = new ArrayList<Shot>();
+        this.setBackground(Color.BLACK);
         super.setSize(w, h);
         this.setFocusable(true); //näppäimistökuuntelija ei toimi ilman tätä
         this.requestFocusInWindow(); //näppäimistökuuntelija ei toimi ilman tätä
@@ -77,7 +78,7 @@ public class Screen extends JPanel implements Runnable {
      * Alustaa näppäimistökuuntelijan.
      */
     public void initKeyListener() {
-        keylistener = new GameKeyListener(ship, this, SHOT_LIMIT);
+        keylistener = new GameKeyListener(ship);
         this.addKeyListener(keylistener);
     }
 
@@ -131,16 +132,26 @@ public class Screen extends JPanel implements Runnable {
      * Liikutetaan jokaista ammusta.
      */
     public void updateShots() {
-        Shot deadshot = null;
         if (!shotlist.isEmpty()) {
             for (Shot s : shotlist) {
                 s.move(w, h);
                 if (s.getLife() <= 0) {
-                    deadshot = s;
+                    deadshotlist.add(s);
                 }
             }
+        }        
+    }
+    
+    public void cleanShots() {
+        if (!deadshotlist.isEmpty()) {
+            shotlist.removeAll(deadshotlist);
         }
-        shotlist.remove(deadshot);
+    }
+
+    public void generateShots() {
+        if (ship.getShootDelay() == 0 && ship.isShooting() && shotlist.size() < SHOT_LIMIT) {
+            shotlist.add(ship.shoots());
+        }
     }
 
     /**
@@ -150,6 +161,8 @@ public class Screen extends JPanel implements Runnable {
         ship.move(w, h);
         updateAsteroids();
         updateShots();
+        generateShots();
+        cleanShots();
     }
 
     /**
@@ -176,7 +189,7 @@ public class Screen extends JPanel implements Runnable {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        drawShip(g);        
+        drawShip(g);
         drawAsteroids(g);
         drawShots(g);
     }
