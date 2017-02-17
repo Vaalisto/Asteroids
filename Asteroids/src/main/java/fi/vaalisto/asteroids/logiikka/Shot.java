@@ -14,8 +14,8 @@ import javax.imageio.ImageIO;
  */
 public class Shot extends GameObj {
 
-    private static final double SHOT_SPEED = 0.00004;
-    private static final int INITIAL_LIFE = 10000000; // Ammuksen elinajan avulla saadaan niille tietty kantama.
+    private static final double SHOT_SPEED = 3;
+    private static final int INITIAL_LIFE = 100; // Ammuksen elinajan avulla saadaan niille tietty kantama.
     private static final String IMG_NAME = "shot.png";
 
     private int life;

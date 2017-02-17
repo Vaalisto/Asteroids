@@ -38,9 +38,11 @@ public class Asteroid extends GameObj {
      */
     private void randomizeAsterdoid() {
         Random r = new Random();
-
-        xVelocity = (0.000001 + (0.000002 - 0.000001) * r.nextDouble()) * (r.nextBoolean() ? 1 : -1);
-        yVelocity = (0.000001 + (0.000002 - 0.000001) * r.nextDouble()) * (r.nextBoolean() ? 1 : -1);
+        
+        xVelocity = (1 + (2 - 1) * r.nextDouble()) * (r.nextBoolean() ? 1 : -1);
+        yVelocity = (1 + (2 - 1) * r.nextDouble()) * (r.nextBoolean() ? 1 : -1);
+//        xVelocity = (0.000001 + (0.000002 - 0.000001) * r.nextDouble()) * (r.nextBoolean() ? 1 : -1);
+//        yVelocity = (0.000001 + (0.000002 - 0.000001) * r.nextDouble()) * (r.nextBoolean() ? 1 : -1);
     }
 
 }

@@ -16,4 +16,4 @@ Päivä | Tunnit | Kuvaus
 10.02.2017 | 2h | Tehty lisää testejä ja javadoceja palautusta varten. Tutkittu näppäimistökuuntelijan toteutusta.
 14.02.2017 | 2h | Näppäimistökuuntelija toimii nyt. Aluksen liike aika erikoinen vielä ja koodattu ampumistoimintoa.
 16.02.2017 | 2h | Ampuminen toimii alustavasti, mutta generoi virheitä. Hienosäädetty grafiikoita.
-17.02.2017 | 3h | Yritetty päästä ampumisen luomista virheistä eroon toistaiseksi onnistumatta. Kokeiltu myös säikeen saamista käyttöön.
+17.02.2017 | 3h | Saatu peli toimimaan säikeellä.
