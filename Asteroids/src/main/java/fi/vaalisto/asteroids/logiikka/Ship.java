@@ -13,7 +13,7 @@ public class Ship extends GameObj {
     private static final double TURN_RATE = 0.000001; //aluksen kääntymisnopeus
     private static final double SPEED_LIMIT = 0.00003; //aluksen maksiminopeus
     private static final double ACCELERATION = 0.000000000005; //aluksen kiihtyvyys
-    private static final int SHOOT_DELAY_RESET = 200;
+    private static final int SHOOT_DELAY_RESET = 10;
     private static final String IMG_NAME = "ship.png";
 
     public boolean accelerating; // totuusarvo siitä kiihdyttääkö alus. Alus on ainoa objekti, joka voi kiihdyttää.

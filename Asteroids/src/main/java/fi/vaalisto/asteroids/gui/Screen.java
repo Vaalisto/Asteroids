@@ -149,7 +149,7 @@ public class Screen extends JPanel implements Runnable {
     }
 
     public void generateShots() {
-        if (ship.getShootDelay() == 0 && ship.isShooting() && shotlist.size() < SHOT_LIMIT) {
+        if (ship.getShootDelay() <= 0 && ship.isShooting() && shotlist.size() <= SHOT_LIMIT) {
             shotlist.add(ship.shoots());
         }
     }
