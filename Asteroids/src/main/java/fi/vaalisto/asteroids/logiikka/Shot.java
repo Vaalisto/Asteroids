@@ -14,18 +14,18 @@ import javax.imageio.ImageIO;
  */
 public class Shot extends GameObj {
 
-    private static final double SHOT_SPEED = 3;
+    private static final double SHOT_SPEED = 4;
     private static final int INITIAL_LIFE = 100; // Ammuksen elinajan avulla saadaan niille tietty kantama.
     private static final String IMG_NAME = "shot.png";
 
     private int life;
 
-    public Shot(double x, double y, double angle) {
+    public Shot(double x, double y, double angle, double xVelocity, double yVelocity) {
         this.x = x;
         this.y = y;
         this.angle = angle;
-        this.xVelocity = -SHOT_SPEED * Math.sin(angle);
-        this.yVelocity = SHOT_SPEED * Math.cos(angle);
+        this.xVelocity = -SHOT_SPEED * Math.sin(angle) + xVelocity;
+        this.yVelocity = SHOT_SPEED * Math.cos(angle)+ yVelocity;
         this.life = INITIAL_LIFE;
         this.img = null;
         try {

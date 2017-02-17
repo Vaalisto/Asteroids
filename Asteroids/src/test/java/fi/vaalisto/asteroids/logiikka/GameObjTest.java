@@ -100,10 +100,8 @@ public class GameObjTest {
 
     @Test
     public void moveCrossingScreenBorderHorizontaly() {
-        ship1.setxVelocity(300);
-        ship1.move(800, 600);
-        ship1.move(800, 600);
-        ship1.move(800, 600);
+        ship1.setxVelocity(900);
+        ship1.move(800, 600);        
         assertEquals(100, ship1.getX(), 0.0);
     }
 

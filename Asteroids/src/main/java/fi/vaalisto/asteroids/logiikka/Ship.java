@@ -10,10 +10,11 @@ import javax.imageio.ImageIO;
  */
 public class Ship extends GameObj {
 
-    private static final double TURN_RATE = 0.2; //aluksen kääntymisnopeus
+    private static final double TURN_RATE = 0.1; //aluksen kääntymisnopeus
     private static final double SPEED_LIMIT = 1.5; //aluksen maksiminopeus
-    private static final double ACCELERATION = 0.2; //aluksen kiihtyvyys
-    private static final int SHOOT_DELAY_RESET = 20;
+    private static final double ACCELERATION = 0.1; //aluksen kiihtyvyys
+    private static final double VELOCITY_DECAY = 0.98; //aluksen "kitka"
+    private static final int SHOOT_DELAY_RESET = 30;
     private static final String IMG_NAME = "ship.png";
 
     public boolean accelerating; // totuusarvo siitä kiihdyttääkö alus. Alus on ainoa objekti, joka voi kiihdyttää.
@@ -87,26 +88,60 @@ public class Ship extends GameObj {
         return shootDelay;
     }
 
+    /**
+     * Aluksen ampuessa tehdään uusi Shot-olio.
+     *
+     * @return Shot-olio, joka näkyy pelissä ammusena.
+     */
     public Shot shoots() {
         this.shootDelay = SHOOT_DELAY_RESET;
-        return new Shot(this.x, this.y, this.angle);
+        return new Shot(this.x, this.y, this.angle, this.xVelocity, this.yVelocity);
     }
 
     /**
-     * Lasketaan nopeuskomponenttien summavektorin pituus, jotta voidaan pitää
-     * se maksiminopeuden rajoissa.
-     *
-     * @param xComponent aluksen nopeuden x-komponentti
-     * @param yComponent aluksen nopeuden y-komponentti
-     * @return summavektorin pituus
+     * Aluksen liikkumismetodin kääntymismetodi.
      */
-    private double sumSpeedVector(double xComponent, double yComponent) {
-        return Math.sqrt((xComponent * xComponent) + (yComponent * yComponent));
+    private void turn() {
+        if (turningLeft) {
+            angle -= TURN_RATE;
+        }
+        if (turningRight) {
+            angle += TURN_RATE;
+        }
+    }
+    
+    /**
+     * Aluksen liikkumismetodin kiihdyttämismetodi.
+     */
+
+    private void accelerate() {
+        if (accelerating) {
+            xVelocity -= ACCELERATION * Math.sin(angle);
+            yVelocity += ACCELERATION * Math.cos(angle);
+        }
+    }
+    
+    /**
+     * Aluksen liikkumismetodin nopeutta vähentävä metodi.
+     */
+
+    private void decaySpeed() {
+        xVelocity *= VELOCITY_DECAY;
+        yVelocity *= VELOCITY_DECAY;
+    }
+    
+    /**
+     * Vähentää laskuria, jolla määritellään aluksen tulinopeus.
+     */
+    private void decreaseShotDelay() {
+        if (shootDelay > 0) {
+            shootDelay--;
+        }
     }
 
     /**
-     * Alukselle laajennettu liikkuminen. Alus on aina olio, joka voi kääntyä ja
-     * kiihtyä. *
+     * Alukselle laajennettu liikkuminen. Alus on ainoa olio, joka voi kääntyä
+     * ja kiihtyä. Metodi on jaettu useampaan metodiin.
      *
      * @param screenWidth pelikentän leveys
      * @param screenHeight peikentän korkeus
@@ -114,28 +149,11 @@ public class Ship extends GameObj {
     @Override
     public void move(int screenWidth, int screenHeight) {
         super.move(screenWidth, screenHeight);
-        if (turningLeft) {
-            angle -= TURN_RATE;
-        }
-        if (turningRight) {
-            angle += TURN_RATE;
-        }
+        turn();
         angleCheck();
-        if (accelerating) {
-            double deltaXVel = ACCELERATION * Math.sin(angle);
-            double deltaYVel = ACCELERATION * Math.cos(angle);
-            double newXVel = xVelocity + deltaXVel;
-            double newYVel = yVelocity + deltaYVel;
-            double newSpeed = sumSpeedVector(newXVel, newYVel);
-            if (newSpeed < SPEED_LIMIT) {
-                xVelocity -= deltaXVel;
-                yVelocity += deltaYVel;
-            }
-
-        }
-        if (shootDelay > 0) {
-            shootDelay--;
-        }
+        accelerate();
+        decaySpeed();
+        decreaseShotDelay();
     }
 
 }

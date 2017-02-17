@@ -17,3 +17,11 @@
 
 ### Luokkakaavio
 ![Luokkakaavio](Luokkakaavio.png)
+
+### Sekvenssiokaaviot
+
+#### Alus kääntyy
+![Sekvenssikaavio kääntymisestä](Sekvenssikaavio_kaantyminen.png)
+
+#### Alus ampuu
+![Sekvenssikaavio ampumisest](Sekvenssikaavio_ampuminen.png)

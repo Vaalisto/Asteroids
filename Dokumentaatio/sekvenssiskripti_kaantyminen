@@ -1,0 +1,12 @@
+title Käyttötapaus: alus kääntyilee
+
+Main->Game:
+Game->Screen:
+Screen->GameKeyListener: initKeyListener
+Screen->Ship: initShip
+GameKeyListener->Ship: turnRight
+Screen->Ship: run
+Ship->Ship: angle+
+GameKeyListener->Ship: turnLeft
+Screen->Ship: run
+Ship->Ship: angle-

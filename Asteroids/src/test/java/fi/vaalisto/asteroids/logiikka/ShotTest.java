@@ -16,25 +16,26 @@ import static org.junit.Assert.*;
  *
  * @author Ville Vaalisto
  */
-public class AsteroidTest {
-
-    Asteroid asteroid;
-
-    public AsteroidTest() {
-    }
-
+public class ShotTest {
+    
+    Shot shot1;
+    
     @Before
     public void setUp() {
-        asteroid = new Asteroid(100, 100);
+        shot1 = new Shot(10, 20, 0, 0, 5);
     }
     
     @Test
-    public void asteroidSpeedIsInRange() {
-        assertTrue(Math.abs(asteroid.getxVelocity()) >= 0.75);
-        assertTrue(Math.abs(asteroid.getyVelocity()) >= 0.75);
-        assertTrue(Math.abs(asteroid.getxVelocity()) <= 1.5);
-        assertTrue(Math.abs(asteroid.getyVelocity()) <= 1.5);
+    public void velocitiesRightAtContructor() {
+        assertEquals(0, shot1.getxVelocity(), 0.0);
+        assertEquals(9, shot1.getyVelocity(), 0.0);
     }
-   
-
+    
+    @Test
+    public void lifeDrains(){
+        assertEquals(100, shot1.getLife());
+        shot1.move(800, 600);
+        assertEquals(99, shot1.getLife());
+        
+    }
 }

@@ -12,6 +12,8 @@ import javax.imageio.ImageIO;
 public class Asteroid extends GameObj {
     
     private static final String IMG_NAME = "asteroid.png";
+    private static final double MIN_SPEED = 0.75;
+    private static final double MAX_SPEED = 1.5;
 
     /**
      * Asteroidin konstruktori, joka asettaa sen haluttiin pisteeseen, lataa
@@ -39,10 +41,8 @@ public class Asteroid extends GameObj {
     private void randomizeAsterdoid() {
         Random r = new Random();
         
-        xVelocity = (1 + (2 - 1) * r.nextDouble()) * (r.nextBoolean() ? 1 : -1);
-        yVelocity = (1 + (2 - 1) * r.nextDouble()) * (r.nextBoolean() ? 1 : -1);
-//        xVelocity = (0.000001 + (0.000002 - 0.000001) * r.nextDouble()) * (r.nextBoolean() ? 1 : -1);
-//        yVelocity = (0.000001 + (0.000002 - 0.000001) * r.nextDouble()) * (r.nextBoolean() ? 1 : -1);
+        xVelocity = (MIN_SPEED + (MAX_SPEED - MIN_SPEED) * r.nextDouble()) * (r.nextBoolean() ? 1 : -1);
+        yVelocity = (MIN_SPEED + (MAX_SPEED - MIN_SPEED) * r.nextDouble()) * (r.nextBoolean() ? 1 : -1);
     }
 
 }

@@ -5,6 +5,7 @@
  */
 package fi.vaalisto.asteroids.logiikka;
 
+import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -49,14 +50,20 @@ public class ShipTest {
     public void shipMoves() {
         ship1.setAccelerating(true);
         ship2.setAccelerating(false);
-        ship1.xVelocity = 0.00002;
-        ship1.yVelocity = -0.00002;
+        ship1.xVelocity = 1.5;
+        ship1.yVelocity = -1;
         ship1.move(800, 600);
-        ship2.xVelocity = -0.00003;
+        ship2.xVelocity = -2;
         ship2.move(800, 600);
-        assertEquals(100.00002, ship1.getX(), 0.0);
-        assertEquals(99.99998, ship1.getY(), 0.0);
-        assertEquals(9.99997, ship2.getX(), 0.0);
-
+        assertEquals(101.5, ship1.getX(), 0.0);
+        assertEquals(99.0, ship1.getY(), 0.0);
+        assertEquals(8, ship2.getX(), 0.0);
+    }
+    
+    @Test
+    public void shipShoots() {
+        ArrayList<Shot> shotlist = new ArrayList<Shot>();
+        shotlist.add(ship1.shoots());
+        assertEquals(1, shotlist.size());
     }
 }

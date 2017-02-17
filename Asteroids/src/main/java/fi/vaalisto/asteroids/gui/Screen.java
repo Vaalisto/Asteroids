@@ -30,8 +30,6 @@ public class Screen extends JPanel implements Runnable {
     public GameKeyListener keylistener;
 
     private boolean running = true;
-    private double delta = 0;
-    private Thread gameThread;
 
     /**
      * Konstruktori asettaa pelikentän leveyden, taustavärin ja alustaa
@@ -142,12 +140,19 @@ public class Screen extends JPanel implements Runnable {
         }
     }
 
+    /**
+     * Poistaa ammukset, jotka on lisätty siivouslistalle.
+     */
     public void cleanShots() {
         if (!deadshotlist.isEmpty()) {
             shotlist.removeAll(deadshotlist);
         }
     }
 
+    /**
+     * Sallii ammuksen luomisen, jos täytetään ehdot. Ehtoina on aluksen
+     * tulinopeus, ammuslistan koko ja että ampumispainike on painettuna.
+     */
     public void generateShots() {
         if (ship.getShootDelay() <= 0 && ship.isShooting() && shotlist.size() <= SHOT_LIMIT) {
             shotlist.add(ship.shoots());
@@ -182,22 +187,7 @@ public class Screen extends JPanel implements Runnable {
                 } catch (InterruptedException e) {
                 }
             }
-            while (sleepTime < 0) {
-                update();
-                sleepTime += MILLIS;
-            }
-
         }
-//        long lastTime = System.currentTimeMillis();
-//        while (running) {
-//            long now = System.currentTimeMillis();
-//            delta += (now - lastTime) / MILLIS;
-//            lastTime = now;
-//            while (delta >= 1) {
-//                update();
-//                this.repaint();
-//            }
-//        }
     }
 
     /**

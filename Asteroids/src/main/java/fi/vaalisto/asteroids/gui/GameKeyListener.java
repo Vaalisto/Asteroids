@@ -13,6 +13,13 @@ import java.awt.event.KeyListener;
 public class GameKeyListener implements KeyListener {
 
     Ship ship;
+    
+    /**
+     * Konstruktori luo näppäimistökuuntelijan, joka saa parametriksi pelin
+     * aluksen.
+     * 
+     * @param ship pelaajan ohjaama alus
+     */
 
     public GameKeyListener(Ship ship) {
         this.ship = ship;
