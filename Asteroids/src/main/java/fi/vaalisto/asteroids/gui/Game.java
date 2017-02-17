@@ -4,16 +4,17 @@ import java.awt.*;
 import javax.swing.*;
 
 /**
- *
- * @author Ville Vaalisto
+ * Luokka on pelin ikkuna, jolle on määritelty tietty koko.
  */
 public class Game extends JFrame {
 
     public Screen screen;
 
-    public Game() throws Exception {
+    /**
+     * Konstruktori luo uuden JFramen, jonka sisällä pyörii itse peli.
+     */
+    public Game() {
         initComponents();
-
     }
 
     private void initComponents() {
@@ -21,7 +22,6 @@ public class Game extends JFrame {
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
-//        getContentPane().setBackground(Color.BLACK);
         screen = new Screen(800, 600);
         this.add(screen);
         setVisible(true);

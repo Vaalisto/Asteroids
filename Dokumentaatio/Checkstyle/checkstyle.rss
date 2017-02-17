@@ -25,8 +25,8 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2017</copyright>
     <item>
-      <title>File: 7,
-             Errors: 0,
+      <title>File: 9,
+             Errors: 1,
              Warnings: 0,
              Infos: 0
       </title>
@@ -61,6 +61,20 @@ under the License.
                           <tr>
                 <td>
                   <a href="${project.url}/checkstyle.html#fi.vaalisto.asteroids.logiikka.Score.java">fi/vaalisto/asteroids/logiikka/Score.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#fi.vaalisto.asteroids.gui.GameKeyListener.java">fi/vaalisto/asteroids/gui/GameKeyListener.java</a>
                 </td>
                 <td>
                   0
@@ -116,6 +130,20 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="${project.url}/checkstyle.html#fi.vaalisto.asteroids.logiikka.Shot.java">fi/vaalisto/asteroids/logiikka/Shot.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="${project.url}/checkstyle.html#fi.vaalisto.asteroids.logiikka.GameObj.java">fi/vaalisto/asteroids/logiikka/GameObj.java</a>
                 </td>
                 <td>
@@ -139,7 +167,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  0
+                  1
                 </td>
               </tr>
                       </tbody>

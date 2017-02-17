@@ -5,4 +5,3 @@
 [GameObj]^-.-[Ship]
 [GameObj]^-.-[Asteroid]
 [GameObj]^-.-[Shot]
-[Game]1++->1[Gui]

@@ -9,8 +9,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 /**
- *
- * @author Ville Vaalisto
+ * Shot-luokka toteuttaa ammukset, joita pelaajan alus ampuu. 
  */
 public class Shot extends GameObj {
 
@@ -19,13 +18,24 @@ public class Shot extends GameObj {
     private static final String IMG_NAME = "shot.png";
 
     private int life;
+    
+    /**
+     * Konstruktori luo ammuksen, jonka kulma ja nopeus riippuvat aluksen vastaavista
+     * parametreista.
+     * 
+     * @param x ammuksen aloituspaikan x-koordinaatti
+     * @param y ammuksen aloituspaikan y-koordinaatti
+     * @param angle ammuksen lähtökulma
+     * @param xVelocity ammuksen alukselta saaman nopeuden x-komponentti
+     * @param yVelocity ammuksen alukselta saaman nopeuden y-komponentti
+     */
 
     public Shot(double x, double y, double angle, double xVelocity, double yVelocity) {
         this.x = x;
         this.y = y;
         this.angle = angle;
         this.xVelocity = -SHOT_SPEED * Math.sin(angle) + xVelocity;
-        this.yVelocity = SHOT_SPEED * Math.cos(angle)+ yVelocity;
+        this.yVelocity = SHOT_SPEED * Math.cos(angle) + yVelocity;
         this.life = INITIAL_LIFE;
         this.img = null;
         try {
