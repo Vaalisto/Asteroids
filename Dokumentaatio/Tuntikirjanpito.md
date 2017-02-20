@@ -17,4 +17,4 @@ Päivä | Tunnit | Kuvaus
 14.02.2017 | 2h | Näppäimistökuuntelija toimii nyt. Aluksen liike aika erikoinen vielä ja koodattu ampumistoimintoa.
 16.02.2017 | 2h | Ampuminen toimii alustavasti, mutta generoi virheitä. Hienosäädetty grafiikoita.
 17.02.2017 | 5h | Saatu peli toimimaan säikeellä. Luotu lisää testejä PIT-raportin avulla. Luotu sekvenssikaaviot.
-20.02.2017 | 1h | Siirretty selkeästi pelilogiikkaa olevat asiat omaan luokkaansa Screen-luokasta.
+20.02.2017 | 3h | Siirretty selkeästi pelilogiikkaa olevat asiat omaan luokkaansa Screen-luokasta. Toteutettu objektien törmäykset ja nyt asteroideja voi tuhota ampumalla.

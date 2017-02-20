@@ -10,7 +10,7 @@ import javax.imageio.ImageIO;
  *
  */
 public class Asteroid extends GameObj {
-    
+
     private static final String IMG_NAME = "asteroid.png";
     private static final double MIN_SPEED = 0.75;
     private static final double MAX_SPEED = 1.5;
@@ -35,13 +35,32 @@ public class Asteroid extends GameObj {
         calculateRadius();
         randomizeAsterdoid();
     }
+    
+    /**
+     * Tarkistaa törmääkö asteroidi alukseen.
+     * 
+     * @param ship pelaajan alus
+     */
+
+    public void checkShipCollision(Ship ship) {
+        if (checkCollision(ship)) {
+            ship.setDestroyed(true);
+        }
+    }
+    
+    public void checkShotCollision(Shot shot) {
+        if (checkCollision(shot)) {
+            shot.setDestroyed(true);
+            this.setDestroyed(true);
+        }
+    }
 
     /**
      * Arvotaan asteroidille satunnaiset nopeusvektorit.
      */
     private void randomizeAsterdoid() {
         Random r = new Random();
-        
+
         xVelocity = (MIN_SPEED + (MAX_SPEED - MIN_SPEED) * r.nextDouble()) * (r.nextBoolean() ? 1 : -1);
         yVelocity = (MIN_SPEED + (MAX_SPEED - MIN_SPEED) * r.nextDouble()) * (r.nextBoolean() ? 1 : -1);
     }

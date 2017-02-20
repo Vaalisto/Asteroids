@@ -20,6 +20,7 @@ public class EventHandler {
     public int y;
     public Ship ship;
     public ArrayList<Asteroid> asteroidlist;
+    public ArrayList<Asteroid> deadasteroidlist;
     public ArrayList<Shot> shotlist;
     public ArrayList<Shot> deadshotlist;
 
@@ -27,6 +28,7 @@ public class EventHandler {
         this.x = x;
         this.y = y;
         this.asteroidlist = new ArrayList<Asteroid>();
+        this.deadasteroidlist = new ArrayList<Asteroid>();
         this.shotlist = new ArrayList<Shot>();
         this.deadshotlist = new ArrayList<Shot>();
         this.initShip();
@@ -53,12 +55,32 @@ public class EventHandler {
     }
 
     /**
-     * Liikutetaan jokaista asteroidia.
+     * Liikutetaan jokaista asteroidia ja tarkistetaan osumat muiden objektien kanssa.
      */
     public void updateAsteroids() {
         if (!asteroidlist.isEmpty()) {
             for (Asteroid a : asteroidlist) {
-                a.move(x, y);
+                a.checkShipCollision(ship);
+                checkAsteroidAndShotCollision(a);
+                if (a.isDestroyed()) {
+                    deadasteroidlist.add(a);
+                } else {
+                    a.move(x, y);
+                }
+            }
+        }
+    }
+    
+    /**
+     * Iteroidaan ammuslista läpi asteroidia kohden ja tarkistetaan osumat.
+     * 
+     * @param asteroid tarkasteltava yksittäinen asteroidi
+     */
+
+    public void checkAsteroidAndShotCollision(Asteroid asteroid) {
+        if (!shotlist.isEmpty()) {
+            for (Shot s : shotlist) {
+                asteroid.checkShotCollision(s);
             }
         }
     }
@@ -70,11 +92,15 @@ public class EventHandler {
         if (!shotlist.isEmpty()) {
             for (Shot s : shotlist) {
                 s.move(x, y);
-                if (s.getLife() <= 0) {
+                if (s.getLife() <= 0 || s.isDestroyed()) {
                     deadshotlist.add(s);
                 }
             }
         }
+    }
+
+    public void checkAsteroidAndShotCollisions() {
+
     }
 
     /**
@@ -95,4 +121,11 @@ public class EventHandler {
             shotlist.removeAll(deadshotlist);
         }
     }
+
+    public void cleanAsteroids() {
+        if (!deadasteroidlist.isEmpty()) {
+            asteroidlist.removeAll(deadasteroidlist);
+        }
+    }
+
 }

@@ -103,6 +103,7 @@ public class Screen extends JPanel implements Runnable {
         this.eventhandler.updateShots();
         this.eventhandler.generateShots();
         this.eventhandler.cleanShots();
+        this.eventhandler.cleanAsteroids();
     }
 
     /**

@@ -17,6 +17,7 @@ abstract class GameObj {
     double angle; //objektin keulan suunta
     double xVelocity, yVelocity; // objektin nopeuden x-, ja y-komponentit        
     boolean active; //totuusarvo, jota voidaan käyttää pelin tauottamiseksi
+    boolean destroyed; //totuusarvo, jota voidaan käyttää objektin tuhoamiseen
     BufferedImage img;
 
     public double getX() {
@@ -46,11 +47,18 @@ abstract class GameObj {
     public boolean isActive() {
         return active;
     }
-    
+
+    public void setDestroyed(boolean destroyed) {
+        this.destroyed = destroyed;
+    }
+
+    public boolean isDestroyed() {
+        return destroyed;
+    }
+
     /**
      * Laskee objektin osumalueen säteen käyttämällä kuvan pienintä mittaa.
      */
-    
     public void calculateRadius() {
         this.radius = Math.min(imageHalfHeight(), imageHalfWidth());
     }
@@ -86,7 +94,17 @@ abstract class GameObj {
     public void setAngle(double angle) {
         this.angle = angle;
         angleCheck();
+    }
 
+    public int getRadius() {
+        return this.radius;
+    }
+
+    public boolean checkCollision(GameObj other) {
+        double xDeltaSquared = Math.pow(this.getX() - other.getX(), 2);
+        double yDeltaSquared = Math.pow(this.getY() - other.getY(), 2);
+        double distance = Math.sqrt(xDeltaSquared + yDeltaSquared);
+        return distance <= (this.getRadius() + other.getRadius());
     }
 
     /**
