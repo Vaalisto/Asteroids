@@ -32,6 +32,7 @@ public class Asteroid extends GameObj {
         } catch (IOException e) {
             System.out.println("Asteroid picture missing!");
         }
+        calculateRadius();
         randomizeAsterdoid();
     }
 

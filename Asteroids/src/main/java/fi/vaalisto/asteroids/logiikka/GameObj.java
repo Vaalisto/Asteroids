@@ -12,6 +12,7 @@ import java.net.URL;
  */
 abstract class GameObj {
 
+    int radius; // objektin osumaalueen säde
     double x, y; //objektin sijainti x,y-koordinaatteina
     double angle; //objektin keulan suunta
     double xVelocity, yVelocity; // objektin nopeuden x-, ja y-komponentit        
@@ -44,6 +45,14 @@ abstract class GameObj {
 
     public boolean isActive() {
         return active;
+    }
+    
+    /**
+     * Laskee objektin osumalueen säteen käyttämällä kuvan pienintä mittaa.
+     */
+    
+    public void calculateRadius() {
+        this.radius = Math.min(imageHalfHeight(), imageHalfWidth());
     }
 
     /**

@@ -49,6 +49,7 @@ public class Ship extends GameObj {
         } catch (IOException e) {
             System.out.println("Ship picture missing!");
         }
+        calculateRadius();
 
     }
 

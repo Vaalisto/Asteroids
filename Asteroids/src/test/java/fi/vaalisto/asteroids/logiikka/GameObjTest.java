@@ -149,5 +149,11 @@ public class GameObjTest {
         assertNotNull(ship1.getImage());
         assertNotNull(asteroid.getImage());
     }
+    
+    @Test
+    public void radiusIsCalculatedRight() {
+        assertEquals(15, ship1.radius);
+        assertEquals(26, asteroid.radius);
+    }
 
 }

@@ -16,9 +16,7 @@ import javax.swing.*;
  */
 public class Screen extends JPanel implements Runnable {
 
-    private static final int NUMBER_OF_ASTEROIDS = 4; //asteroidien määrä alussa
-    private static final int FPS = 60; //pelin päivitysnopeus
-    private static final int SHOT_LIMIT = 5; // yhtäaikaisten ammusten maksimimäärä
+    private static final int FPS = 60; //pelin päivitysnopeus    
     private static final double MILLIS = 1000 / FPS; //millisekunteja per kuvanpäivitys    
 
     public int w;
@@ -28,6 +26,7 @@ public class Screen extends JPanel implements Runnable {
     public ArrayList<Shot> shotlist;
     public ArrayList<Shot> deadshotlist;
     public GameKeyListener keylistener;
+    public EventHandler eventhandler;
 
     private boolean running = true;
 
@@ -48,35 +47,15 @@ public class Screen extends JPanel implements Runnable {
         super.setSize(w, h);
         this.setFocusable(true); //näppäimistökuuntelija ei toimi ilman tätä
         this.requestFocusInWindow(); //näppäimistökuuntelija ei toimi ilman tätä
-        initShip();
-        initAsteroids();
+        this.eventhandler = new EventHandler(w, h);
         initKeyListener();
-    }
-
-    /**
-     * Asettaa pelaajan aluksen pelikentän keskelle.
-     */
-    public void initShip() {
-        ship = new Ship(w / 2, h / 2);
-    }
-
-    /**
-     * Alustaa halutun määrän uusia asteroideja ja satunnaisgeneroi niiden
-     * sijainnit.
-     */
-    public void initAsteroids() {
-        for (int i = 0; i < NUMBER_OF_ASTEROIDS; i++) {
-            int randomX = (int) (Math.random() * w);
-            int randomY = (int) (Math.random() * h);
-            asteroidlist.add(new Asteroid(randomX, randomY));
-        }
     }
 
     /**
      * Alustaa näppäimistökuuntelijan.
      */
     public void initKeyListener() {
-        keylistener = new GameKeyListener(ship);
+        keylistener = new GameKeyListener(this.eventhandler.ship);
         this.addKeyListener(keylistener);
     }
 
@@ -86,7 +65,7 @@ public class Screen extends JPanel implements Runnable {
      * @param g grafiikkaan tarvittava luokka
      */
     public void drawShip(Graphics g) {
-        this.ship.draw(g);
+        this.eventhandler.ship.draw(g);
     }
 
     /**
@@ -95,8 +74,8 @@ public class Screen extends JPanel implements Runnable {
      * @param g grafiikkaan tarvittava luokka
      */
     public void drawAsteroids(Graphics g) {
-        if (!asteroidlist.isEmpty()) {
-            for (Asteroid a : asteroidlist) {
+        if (!this.eventhandler.asteroidlist.isEmpty()) {
+            for (Asteroid a : this.eventhandler.asteroidlist) {
                 a.draw(g);
             }
         }
@@ -108,54 +87,10 @@ public class Screen extends JPanel implements Runnable {
      * @param g grafiikkaan tarvittava luokka
      */
     public void drawShots(Graphics g) {
-        if (!shotlist.isEmpty()) {
-            for (Shot s : shotlist) {
+        if (!this.eventhandler.shotlist.isEmpty()) {
+            for (Shot s : this.eventhandler.shotlist) {
                 s.draw(g);
             }
-        }
-    }
-
-    /**
-     * Liikutetaan jokaista asteroidia.
-     */
-    public void updateAsteroids() {
-        if (!asteroidlist.isEmpty()) {
-            for (Asteroid a : asteroidlist) {
-                a.move(w, h);
-            }
-        }
-    }
-
-    /**
-     * Liikutetaan jokaista ammusta.
-     */
-    public void updateShots() {
-        if (!shotlist.isEmpty()) {
-            for (Shot s : shotlist) {
-                s.move(w, h);
-                if (s.getLife() <= 0) {
-                    deadshotlist.add(s);
-                }
-            }
-        }
-    }
-
-    /**
-     * Poistaa ammukset, jotka on lisätty siivouslistalle.
-     */
-    public void cleanShots() {
-        if (!deadshotlist.isEmpty()) {
-            shotlist.removeAll(deadshotlist);
-        }
-    }
-
-    /**
-     * Sallii ammuksen luomisen, jos täytetään ehdot. Ehtoina on aluksen
-     * tulinopeus, ammuslistan koko ja että ampumispainike on painettuna.
-     */
-    public void generateShots() {
-        if (ship.getShootDelay() <= 0 && ship.isShooting() && shotlist.size() <= SHOT_LIMIT) {
-            shotlist.add(ship.shoots());
         }
     }
 
@@ -163,11 +98,11 @@ public class Screen extends JPanel implements Runnable {
      * Liikutetaan pelikentän kaikkia tarvittavia olioita.
      */
     public void update() {
-        ship.move(w, h);
-        updateAsteroids();
-        updateShots();
-        generateShots();
-        cleanShots();
+        this.eventhandler.ship.move(w, h);
+        this.eventhandler.updateAsteroids();
+        this.eventhandler.updateShots();
+        this.eventhandler.generateShots();
+        this.eventhandler.cleanShots();
     }
 
     /**
