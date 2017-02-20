@@ -95,7 +95,7 @@ public class Screen extends JPanel implements Runnable {
     }
 
     /**
-     * Liikutetaan pelikentän kaikkia tarvittavia olioita.
+     * Liikutetaan tai poistetaan pelikentällä olevia objekteja.
      */
     public void update() {
         this.eventhandler.ship.move(w, h);
