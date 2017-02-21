@@ -19,6 +19,8 @@ import static org.junit.Assert.*;
 public class AsteroidTest {
 
     Asteroid asteroid;
+    Shot shot;
+    Ship ship;
 
     public AsteroidTest() {
     }
@@ -34,6 +36,36 @@ public class AsteroidTest {
         assertTrue(Math.abs(asteroid.getyVelocity()) >= 0.75);
         assertTrue(Math.abs(asteroid.getxVelocity()) <= 1.5);
         assertTrue(Math.abs(asteroid.getyVelocity()) <= 1.5);
+    }
+    
+    @Test
+    public void trueShotCollisionTest() {
+        shot = new Shot(95, 95, 0, 0, 0);
+        asteroid.checkShotCollision(shot);
+        assertTrue(shot.isDestroyed());
+        assertTrue(asteroid.isDestroyed());
+    }
+    
+    @Test
+    public void falseShotCollisionTest() {
+        shot = new Shot(80, 80, 0, 0, 0);
+        asteroid.checkShotCollision(shot);
+        assertFalse(shot.isDestroyed());
+        assertFalse(asteroid.isDestroyed());
+    }
+    
+    @Test
+    public void trueShipCollisionTest() {
+        ship = new Ship(95, 95);
+        asteroid.checkShipCollision(ship);
+        assertTrue(ship.isDestroyed());
+    }
+    
+    @Test
+    public void falseShipCollisionTest() {
+        ship = new Ship(50, 50);
+        asteroid.checkShipCollision(ship);
+        assertFalse(ship.isDestroyed());
     }
    
 

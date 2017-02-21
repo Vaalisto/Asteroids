@@ -19,6 +19,9 @@ import static org.junit.Assert.*;
 public class EventHandlerTest {
 
     EventHandler eh;
+    Asteroid asteroid;
+    Ship ship;
+    Shot shot;
 
     public EventHandlerTest() {
     }
@@ -44,5 +47,45 @@ public class EventHandlerTest {
         eh.generateShots();
         assertEquals(1, eh.shotlist.size());
     }
+    
+    @Test
+    public void shotIsNotGeneratedWhenNotShooting() {
+        eh.generateShots();
+        assertEquals(0, eh.shotlist.size());
+    }
+    
+    @Test
+    public void tryToEmptyAsteroidList() {
+        for (Asteroid a : eh.asteroidlist) {
+            a.setDestroyed(true);
+        }
+        eh.updateAsteroids();
+        eh.cleanAsteroids();
+        assertEquals(0, eh.asteroidlist.size());
+    }
+    
+    @Test
+    public void emptyShotListWithMoves() {
+        for (Asteroid a : eh.asteroidlist) { //poistetaan ensin alustetut asteroidit, ettei ammus osu niihin
+            a.setDestroyed(true);
+        }
+        eh.updateAsteroids();
+        eh.cleanAsteroids();
+        eh.ship.setShooting(true);
+        eh.generateShots();
+        for (int i = 0; i < 100; i++) {
+            eh.updateShots();
+            eh.cleanShots();
+        }
+        assertEquals(0, eh.shotlist.size());        
+        assertEquals(1, eh.deadshotlist.size());
+        eh.generateShots();
+        for (int i = 0; i < 200; i++) {
+            eh.updateShots();
+        }
+        assertEquals(0, eh.shotlist.size());
+        assertEquals(1, eh.deadshotlist.size());
+    }
+    
     
 }
