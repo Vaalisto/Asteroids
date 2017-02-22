@@ -26,9 +26,10 @@ public class Screen extends JPanel implements Runnable {
     public ArrayList<Shot> shotlist;
     public ArrayList<Shot> deadshotlist;
     public GameKeyListener keylistener;
-    public EventHandler eventhandler;
+    public EventHandler eventhandler;    
 
     private boolean running = true;
+    private boolean paused = false;
 
     /**
      * Konstruktori asettaa pelikentän leveyden, taustavärin ja alustaa
@@ -44,9 +45,9 @@ public class Screen extends JPanel implements Runnable {
         this.shotlist = new ArrayList<Shot>();
         this.deadshotlist = new ArrayList<Shot>();
         this.setBackground(Color.BLACK);
-        super.setSize(w, h);
+        super.setSize(w, h);        
         this.setFocusable(true); //näppäimistökuuntelija ei toimi ilman tätä
-        this.requestFocusInWindow(); //näppäimistökuuntelija ei toimi ilman tätä
+        this.requestFocusInWindow(); //näppäimistökuuntelija ei toimi ilman tätä        
         this.eventhandler = new EventHandler(w, h);
         initKeyListener();
     }
@@ -55,7 +56,7 @@ public class Screen extends JPanel implements Runnable {
      * Alustaa näppäimistökuuntelijan.
      */
     public void initKeyListener() {
-        keylistener = new GameKeyListener(this.eventhandler.ship);
+        keylistener = new GameKeyListener(this.eventhandler.ship, this);
         this.addKeyListener(keylistener);
     }
 
@@ -94,16 +95,26 @@ public class Screen extends JPanel implements Runnable {
         }
     }
 
+    public void changePause() {
+        if (this.paused) {
+            this.paused = false;
+        } else {
+            this.paused = true;
+        }
+    }
+
     /**
      * Liikutetaan tai poistetaan pelikentällä olevia objekteja.
      */
     public void update() {
-        this.eventhandler.ship.move(w, h);
-        this.eventhandler.updateAsteroids();
-        this.eventhandler.updateShots();
-        this.eventhandler.generateShots();
-        this.eventhandler.cleanShots();
-        this.eventhandler.cleanAsteroids();
+        if (!this.paused) {
+            this.eventhandler.ship.move(w, h);
+            this.eventhandler.updateAsteroids();
+            this.eventhandler.updateShots();
+            this.eventhandler.generateShots();
+            this.eventhandler.cleanShots();
+            this.eventhandler.cleanAsteroids();
+        }
     }
 
     /**

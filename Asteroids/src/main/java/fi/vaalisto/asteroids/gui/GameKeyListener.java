@@ -13,16 +13,17 @@ import java.awt.event.KeyListener;
 public class GameKeyListener implements KeyListener {
 
     Ship ship;
-    
+    Screen screen;
+
     /**
      * Konstruktori luo näppäimistökuuntelijan, joka saa parametriksi pelin
      * aluksen.
-     * 
+     *
      * @param ship pelaajan ohjaama alus
      */
-
-    public GameKeyListener(Ship ship) {
+    public GameKeyListener(Ship ship, Screen screen) {
         this.ship = ship;
+        this.screen = screen;
     }
 
     @Override
@@ -39,6 +40,10 @@ public class GameKeyListener implements KeyListener {
         if (e.getKeyCode() == KeyEvent.VK_SPACE) {
             ship.setShooting(true);
         }
+        if (e.getKeyCode() == KeyEvent.VK_P) {
+            screen.changePause();
+        }
+
     }
 
     @Override
