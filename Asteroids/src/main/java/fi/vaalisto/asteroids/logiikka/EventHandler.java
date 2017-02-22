@@ -15,9 +15,11 @@ public class EventHandler {
 
     private static final int NUMBER_OF_ASTEROIDS = 4; //asteroidien määrä alussa
     private static final int SHOT_LIMIT = 5; // yhtäaikaisten ammusten maksimimäärä
+    private static final int STARTING_LEVEL = 1; //aloitetaan ykköstasolta
 
     public int x;
     public int y;
+    public int level;
     public Ship ship;
     public ArrayList<Asteroid> asteroidlist;
     public ArrayList<Asteroid> deadasteroidlist;
@@ -27,6 +29,7 @@ public class EventHandler {
     public EventHandler(int x, int y) {
         this.x = x;
         this.y = y;
+        this.level = STARTING_LEVEL;
         this.asteroidlist = new ArrayList<Asteroid>();
         this.deadasteroidlist = new ArrayList<Asteroid>();
         this.shotlist = new ArrayList<Shot>();
@@ -48,14 +51,30 @@ public class EventHandler {
      */
     public void initAsteroids() {
         for (int i = 0; i < NUMBER_OF_ASTEROIDS; i++) {
-            int randomX = (int) (Math.random() * x);
-            int randomY = (int) (Math.random() * y);
-            asteroidlist.add(new Asteroid(randomX, randomY));
+            asteroidlist.add(generateAsteroidSafely());
         }
     }
 
     /**
-     * Liikutetaan jokaista asteroidia ja tarkistetaan osumat muiden objektien kanssa.
+     * Generoidaan satunnaiset x- ja y-koordinaatit tarkistaen onko se
+     * turvallisen matkan päässä pelaajan aluksesta ja luodaan asteroidi, jos
+     * näin on.
+     *
+     * @return turvallisen matkan päässä oleva asteroidi
+     */
+    public Asteroid generateAsteroidSafely() {
+        while (true) {
+            int randomX = (int) (Math.random() * x);
+            int randomY = (int) (Math.random() * y);
+            if (!ship.checkCollision(new AsteroidSpawner(randomX, randomY))) {
+                return new Asteroid(randomX, randomY, calculateMultiplier());
+            }
+        }
+    }
+
+    /**
+     * Liikutetaan jokaista asteroidia ja tarkistetaan osumat muiden objektien
+     * kanssa.
      */
     public void updateAsteroids() {
         if (!asteroidlist.isEmpty()) {
@@ -68,15 +87,17 @@ public class EventHandler {
                     a.move(x, y);
                 }
             }
+        } else {
+            initAsteroids();
+            this.level++;
         }
     }
-    
+
     /**
      * Iteroidaan ammuslista läpi asteroidia kohden ja tarkistetaan osumat.
-     * 
+     *
      * @param asteroid tarkasteltava yksittäinen asteroidi
      */
-
     public void checkAsteroidAndShotCollision(Asteroid asteroid) {
         if (!shotlist.isEmpty()) {
             for (Shot s : shotlist) {
@@ -99,10 +120,6 @@ public class EventHandler {
         }
     }
 
-    public void checkAsteroidAndShotCollisions() {
-
-    }
-
     /**
      * Sallii ammuksen luomisen, jos täytetään ehdot. Ehtoina on aluksen
      * tulinopeus, ammuslistan koko ja että ampumispainike on painettuna.
@@ -121,11 +138,25 @@ public class EventHandler {
             shotlist.removeAll(deadshotlist);
         }
     }
+    
+    /**
+     * Poistaa asteroidit, jotka on lisätty siivouslistalle.
+     */
 
     public void cleanAsteroids() {
         if (!deadasteroidlist.isEmpty()) {
             asteroidlist.removeAll(deadasteroidlist);
         }
+    }
+    
+    /**
+     * Lasketaan nopeuskerroin asteroideille riippuen kuinka pitkälle peli on edennyt.
+     * 
+     * @return kerroin asteroidien nopeudelle
+     */
+    
+    private double calculateMultiplier() {
+        return this.level / 10 + 0.9;
     }
 
 }

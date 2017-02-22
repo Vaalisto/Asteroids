@@ -22,7 +22,7 @@ public class Asteroid extends GameObj {
      * @param x asteroidin aloituspaikan x-koordinaatti
      * @param y asteroidin aloituspaikan y-koordinaatti
      */
-    public Asteroid(int x, int y) {
+    public Asteroid(int x, int y, double multiplier) {
         this.x = x;
         this.y = y;
         this.angle = 0;
@@ -33,7 +33,7 @@ public class Asteroid extends GameObj {
             System.out.println("Asteroid picture missing!");
         }
         calculateRadius();
-        randomizeAsterdoid();
+        randomizeAsterdoid(multiplier);
     }
     
     /**
@@ -58,11 +58,11 @@ public class Asteroid extends GameObj {
     /**
      * Arvotaan asteroidille satunnaiset nopeusvektorit.
      */
-    private void randomizeAsterdoid() {
+    private void randomizeAsterdoid(double multiplier) {
         Random r = new Random();
 
-        xVelocity = (MIN_SPEED + (MAX_SPEED - MIN_SPEED) * r.nextDouble()) * (r.nextBoolean() ? 1 : -1);
-        yVelocity = (MIN_SPEED + (MAX_SPEED - MIN_SPEED) * r.nextDouble()) * (r.nextBoolean() ? 1 : -1);
+        xVelocity = multiplier * (MIN_SPEED + (MAX_SPEED - MIN_SPEED) * r.nextDouble()) * (r.nextBoolean() ? 1 : -1);
+        yVelocity = multiplier * (MIN_SPEED + (MAX_SPEED - MIN_SPEED) * r.nextDouble()) * (r.nextBoolean() ? 1 : -1);
     }
 
 }

@@ -27,7 +27,7 @@ public class AsteroidTest {
 
     @Before
     public void setUp() {
-        asteroid = new Asteroid(100, 100);
+        asteroid = new Asteroid(100, 100, 1.0);
     }
     
     @Test

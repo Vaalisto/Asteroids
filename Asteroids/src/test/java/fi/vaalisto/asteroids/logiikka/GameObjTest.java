@@ -30,7 +30,7 @@ public class GameObjTest {
     @Before
     public void setUp() {
         ship1 = new Ship(0, 0);
-        asteroid = new Asteroid(100, 200);
+        asteroid = new Asteroid(100, 200, 1.0);
     }
 
     @Test
