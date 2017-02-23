@@ -1,4 +1,4 @@
-package fi.vaalisto.asteroids.logiikka;
+package fi.vaalisto.asteroids.gui;
 
 import fi.vaalisto.asteroids.gui.Game;
 
