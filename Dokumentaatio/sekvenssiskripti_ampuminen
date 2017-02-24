@@ -2,20 +2,22 @@ title Käyttötapaus: alus ampuu
 
 Main->Game:
 Game->Screen:
+Screen->EventHandler:
 Screen->GameKeyListener: initKeyListener
-Screen->Ship: initShip
+EventHandler->Ship: initShip
 GameKeyListener->Ship: isShooting
-Screen->Ship: run
-Ship->Shot:
+
+Screen->EventHandler: run
+EventHandler->Ship:generateShots
+Ship->Shot:shoots
 
 loop
-    Screen->Shot: run
+    Screen->EventHandler: run
+    EventHandler->Shot:updateShots
     Shot->Shot: life--
 end
 
-Shot->Screen: life <= 0
-Screen->Shot: 
+Shot->EventHandler: life <= 0
+Screen->EventHandler: run
+EventHandler->Shot:cleanShots
 destroy Shot
-
-
-

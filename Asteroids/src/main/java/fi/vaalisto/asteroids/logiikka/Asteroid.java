@@ -25,6 +25,7 @@ public class Asteroid extends GameObj {
      *
      * @param x asteroidin aloituspaikan x-koordinaatti
      * @param y asteroidin aloituspaikan y-koordinaatti
+     * @param multiplier asteroidin nopeuskerroin
      */
     public Asteroid(int x, int y, double multiplier) {
         this.x = x;
@@ -51,6 +52,11 @@ public class Asteroid extends GameObj {
         }
     }
 
+    /**
+     * Tarkistaa törmääkö asteroidi ammukseen.
+     *
+     * @param shot ammus
+     */
     public void checkShotCollision(Shot shot) {
         if (checkCollision(shot)) {
             shot.setDestroyed(true);

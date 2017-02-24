@@ -20,6 +20,7 @@ public class GameKeyListener implements KeyListener {
      * aluksen.
      *
      * @param ship pelaajan ohjaama alus
+     * @param screen pelin ruutu
      */
     public GameKeyListener(Ship ship, Screen screen) {
         this.ship = ship;

@@ -23,17 +23,29 @@ public class ShotTest {
     
     @Before
     public void setUp() {
-        shot1 = new Shot(10, 20, 0, 0, 5);
+        shot1 = new Shot(10, 20, Math.PI/4, 0, 5);
     }
     
     @Test
     public void velocitiesRightAtContructor() {
         ship1 = new Ship(0, 0);
         ship1.setyVelocity(5);
-        double shotSpeedX = ship1.getxVelocity() + 4 * Math.sin(shot1.getAngle());
+        double shotSpeedX = ship1.getxVelocity() - 4 * Math.sin(shot1.getAngle());
         double shotSpeedY = ship1.getyVelocity() + 4 * Math.cos(shot1.getAngle());
         assertEquals(shotSpeedX, shot1.getxVelocity(), 0.0);
         assertEquals(shotSpeedY, shot1.getyVelocity(), 0.0);
+    }
+    
+    @Test
+    public void anotherVelocityTest() {
+        shot1 = new Shot(10, 20, Math.PI/4, 5, 0);
+        ship1 = new Ship(0, 0);
+        ship1.setxVelocity(5);
+        double shotSpeedX = ship1.getxVelocity() - 4 * Math.sin(shot1.getAngle());
+        double shotSpeedY = ship1.getyVelocity() + 4 * Math.cos(shot1.getAngle());
+        assertEquals(shotSpeedX, shot1.getxVelocity(), 0.0);
+        assertEquals(shotSpeedY, shot1.getyVelocity(), 0.0);
+        
     }
     
     @Test
@@ -45,6 +57,10 @@ public class ShotTest {
     
     @Test
     public void shotMoves() {
-        
+        double initialX = shot1.getX();
+        double initialY = shot1.getY();
+        shot1.move(800, 600);
+        assertTrue(initialX != shot1.getX());
+        assertTrue(initialY != shot1.getY());
     }
 }

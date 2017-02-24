@@ -8,8 +8,9 @@ package fi.vaalisto.asteroids.logiikka;
 import java.util.ArrayList;
 
 /**
+ * EventHandler-luokka huolehtii pelin olioista ja käy erilaiset pelissä olevat
+ * tapahtumat läpi.
  *
- * @author Ville Vaalisto
  */
 public class EventHandler {
 
@@ -26,6 +27,13 @@ public class EventHandler {
     public ArrayList<Shot> shotlist;
     public ArrayList<Shot> deadshotlist;
 
+    /**
+     * Luodaan pelin olioita ja niiden välistä logiikkaa hoitava
+     * tapahtumakäsittelijä.
+     *
+     * @param x peliruudun leveys
+     * @param y peliruudun korkeus
+     */
     public EventHandler(int x, int y) {
         this.x = x;
         this.y = y;
@@ -138,23 +146,22 @@ public class EventHandler {
             shotlist.removeAll(deadshotlist);
         }
     }
-    
+
     /**
      * Poistaa asteroidit, jotka on lisätty siivouslistalle.
      */
-
     public void cleanAsteroids() {
         if (!deadasteroidlist.isEmpty()) {
             asteroidlist.removeAll(deadasteroidlist);
         }
     }
-    
+
     /**
-     * Lasketaan nopeuskerroin asteroideille riippuen kuinka pitkälle peli on edennyt.
-     * 
+     * Lasketaan nopeuskerroin asteroideille riippuen kuinka pitkälle peli on
+     * edennyt.
+     *
      * @return kerroin asteroidien nopeudelle
      */
-    
     private double calculateMultiplier() {
         return this.level / 10 + 0.9;
     }

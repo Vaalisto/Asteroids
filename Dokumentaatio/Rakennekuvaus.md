@@ -1,0 +1,5 @@
+## Rakennekuvaus
+
+Peli koostuu graafisen käyttöliittymän ja pelilogiikan paketeista. Graafisessa paketissa on pelin käynnistämiseen Main-luokka, joka käynnistää Game-luokan olion. Se on käytännössä vain JFrame, jonka käynnistää taas JPanelia laajentavan Screen-luokan. Screen huolehtii pelin grafiikan piirtämisestä ja siihen myös liitetään pelin logiikkaa hoitavat luokat ja näppäimistökuuntelija. Screeniin on myös toteutettu pelin reaaliaikaisesta toiminnasta vastaava metodi, joka hyödyntää säiettä.
+
+Pelilogiikka on graafiseen toteutukseen yhteydessä EventHandler-luokan kautta, joka on Screen-oliossa attribuuttina. Eventhandler-olio sisältää listoissa abstraktia GameObj-luokkaa laajentavia olioita, joita ovat Ship, Asteroid ja Shot. EventHander-huolehtii näiden väliset toiminnallisuudet ja siten pelilogiikan, joka välittyy pelaajalle pelikokemuksena ja pelin sääntöinä.

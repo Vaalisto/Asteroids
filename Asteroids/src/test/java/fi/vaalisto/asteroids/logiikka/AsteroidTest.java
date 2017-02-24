@@ -29,7 +29,7 @@ public class AsteroidTest {
     public void setUp() {
         asteroid = new Asteroid(100, 100, 1.0);
     }
-    
+
     @Test
     public void asteroidSpeedIsInRange() {
         assertTrue(Math.abs(asteroid.getxVelocity()) >= 0.75);
@@ -37,7 +37,7 @@ public class AsteroidTest {
         assertTrue(Math.abs(asteroid.getxVelocity()) <= 1.5);
         assertTrue(Math.abs(asteroid.getyVelocity()) <= 1.5);
     }
-    
+
     @Test
     public void trueShotCollisionTest() {
         shot = new Shot(95, 95, 0, 0, 0);
@@ -45,7 +45,7 @@ public class AsteroidTest {
         assertTrue(shot.isDestroyed());
         assertTrue(asteroid.isDestroyed());
     }
-    
+
     @Test
     public void falseShotCollisionTest() {
         shot = new Shot(80, 80, 0, 0, 0);
@@ -53,20 +53,35 @@ public class AsteroidTest {
         assertFalse(shot.isDestroyed());
         assertFalse(asteroid.isDestroyed());
     }
-    
+
     @Test
     public void trueShipCollisionTest() {
         ship = new Ship(95, 95);
         asteroid.checkShipCollision(ship);
         assertTrue(ship.isDestroyed());
     }
-    
+
     @Test
     public void falseShipCollisionTest() {
         ship = new Ship(50, 50);
         asteroid.checkShipCollision(ship);
         assertFalse(ship.isDestroyed());
     }
-   
+
+    @Test
+    public void moveTurnsAsteroid() {
+        double initialAngle = asteroid.getAngle();
+        asteroid.move(800, 600);
+        assertTrue(initialAngle != asteroid.getAngle());
+    }
+
+    @Test
+    public void moveMovesAsteroid() {
+        double initialX = asteroid.getX();
+        double initialY = asteroid.getY();
+        asteroid.move(800, 600);
+        assertTrue(initialX != asteroid.getX());
+        assertTrue(initialY != asteroid.getY());
+    }
 
 }

@@ -35,25 +35,25 @@ public class EventHandlerTest {
     public void shipIsInitalized() {
         assertNotNull(eh.ship);
     }
-    
+
     @Test
     public void asteroidsAreInitalized() {
         assertEquals(4, eh.asteroidlist.size());
     }
-    
+
     @Test
     public void shotIsGenerated() {
         eh.ship.setShooting(true);
         eh.generateShots();
         assertEquals(1, eh.shotlist.size());
     }
-    
+
     @Test
     public void shotIsNotGeneratedWhenNotShooting() {
         eh.generateShots();
         assertEquals(0, eh.shotlist.size());
     }
-    
+
     @Test
     public void tryToEmptyAsteroidList() {
         for (Asteroid a : eh.asteroidlist) {
@@ -63,7 +63,7 @@ public class EventHandlerTest {
         eh.cleanAsteroids();
         assertEquals(0, eh.asteroidlist.size());
     }
-    
+
     @Test
     public void emptyShotListWithMoves() {
         for (Asteroid a : eh.asteroidlist) { //poistetaan ensin alustetut asteroidit, ettei ammus osu niihin
@@ -77,7 +77,7 @@ public class EventHandlerTest {
             eh.updateShots();
             eh.cleanShots();
         }
-        assertEquals(0, eh.shotlist.size());        
+        assertEquals(0, eh.shotlist.size());
         assertEquals(1, eh.deadshotlist.size());
         eh.generateShots();
         for (int i = 0; i < 200; i++) {
@@ -86,6 +86,5 @@ public class EventHandlerTest {
         assertEquals(0, eh.shotlist.size());
         assertEquals(1, eh.deadshotlist.size());
     }
-    
-    
+
 }

@@ -2,11 +2,15 @@ title Käyttötapaus: alus kääntyilee
 
 Main->Game:
 Game->Screen:
+Screen->EventHandler:
 Screen->GameKeyListener: initKeyListener
-Screen->Ship: initShip
+EventHandler->Ship: initShip
+
 GameKeyListener->Ship: turnRight
-Screen->Ship: run
+Screen->EventHandler: run
+EventHandler->Ship:move
 Ship->Ship: angle+
 GameKeyListener->Ship: turnLeft
-Screen->Ship: run
+Screen->EventHandler: run
+EventHandler->Ship:move
 Ship->Ship: angle-

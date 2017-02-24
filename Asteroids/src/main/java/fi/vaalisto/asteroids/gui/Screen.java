@@ -27,7 +27,7 @@ public class Screen extends JPanel implements Runnable {
     public ArrayList<Shot> shotlist;
     public ArrayList<Shot> deadshotlist;
     public GameKeyListener keylistener;
-    public EventHandler eventhandler;    
+    public EventHandler eventhandler;
 
     private boolean running = true;
     private boolean paused = false;
@@ -46,7 +46,7 @@ public class Screen extends JPanel implements Runnable {
         this.shotlist = new ArrayList<Shot>();
         this.deadshotlist = new ArrayList<Shot>();
         this.setBackground(Color.BLACK);
-        super.setSize(w, h);        
+        super.setSize(w, h);
         this.setFocusable(true); //näppäimistökuuntelija ei toimi ilman tätä
         this.requestFocusInWindow(); //näppäimistökuuntelija ei toimi ilman tätä   
         this.setDoubleBuffered(true);
@@ -100,6 +100,9 @@ public class Screen extends JPanel implements Runnable {
         }
     }
 
+    /**
+     * Vaihdetaan pelin tila tauolle tai sieltä pois.
+     */
     public void changePause() {
         if (this.paused) {
             this.paused = false;
@@ -122,9 +125,6 @@ public class Screen extends JPanel implements Runnable {
         }
     }
 
-    /**
-     * Pelin reaaliaikaisen toiminnan mahdollistava metodi.
-     */
     @Override
     public void run() {
         while (running) {
@@ -142,11 +142,6 @@ public class Screen extends JPanel implements Runnable {
         }
     }
 
-    /**
-     * JPanelilta peritty metodi, joka piirtää kaikki graafiset komponentit.
-     *
-     * @param g grafiikkaan tarvittava luokka
-     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
