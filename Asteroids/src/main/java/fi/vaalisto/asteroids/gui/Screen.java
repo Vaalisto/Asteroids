@@ -48,7 +48,8 @@ public class Screen extends JPanel implements Runnable {
         this.setBackground(Color.BLACK);
         super.setSize(w, h);        
         this.setFocusable(true); //näppäimistökuuntelija ei toimi ilman tätä
-        this.requestFocusInWindow(); //näppäimistökuuntelija ei toimi ilman tätä        
+        this.requestFocusInWindow(); //näppäimistökuuntelija ei toimi ilman tätä   
+        this.setDoubleBuffered(true);
         this.eventhandler = new EventHandler(w, h);
         initKeyListener();
     }
