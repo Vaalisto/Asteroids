@@ -3,6 +3,7 @@ package fi.vaalisto.asteroids.gui;
 import fi.vaalisto.asteroids.logiikka.*;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.ListIterator;
@@ -67,6 +68,7 @@ public class Screen extends JPanel implements Runnable {
      */
     public void drawShip(Graphics g) {
         this.eventhandler.ship.draw(g);
+        Toolkit.getDefaultToolkit().sync();
     }
 
     /**
@@ -78,6 +80,7 @@ public class Screen extends JPanel implements Runnable {
         if (!this.eventhandler.asteroidlist.isEmpty()) {
             for (Asteroid a : this.eventhandler.asteroidlist) {
                 a.draw(g);
+                Toolkit.getDefaultToolkit().sync();
             }
         }
     }
@@ -91,6 +94,7 @@ public class Screen extends JPanel implements Runnable {
         if (!this.eventhandler.shotlist.isEmpty()) {
             for (Shot s : this.eventhandler.shotlist) {
                 s.draw(g);
+                Toolkit.getDefaultToolkit().sync();
             }
         }
     }
