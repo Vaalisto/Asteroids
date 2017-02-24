@@ -13,13 +13,14 @@
 * Pistelaskuriin kertyy pisteitä, kun ammuttu ammus tuhoaa asteroideja
 * Pistetulos tallentuu ja sen yhteyteen voi kirjoittaa nimensä.
 
-**Ohjeet:** 
-|Painike | Toiminto|
-|:---:|:---|
+**Ohjeet:**
+
+| Painike          | Toiminto                |
+|:----------------:|:----------------------- |
 | Nuoli vasemmalle | Alus kääntyy vasemmalle |
-| Nuoli oikealle | Alus kääntyy oikealle |
-| Välilyönti | Alus ampuu |
-| P | Peli tauolle |
+| Nuoli oikealle   | Alus kääntyy oikealle   |
+| Välilyönti       | Alus ampuu              |
+| P                | Peli tauolle            |
 
 
 ### [Rakennekuvaus](Rakennekuvaus.md)
