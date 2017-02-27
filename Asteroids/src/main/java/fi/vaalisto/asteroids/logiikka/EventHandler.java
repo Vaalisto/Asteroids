@@ -17,10 +17,12 @@ public class EventHandler {
     private static final int NUMBER_OF_ASTEROIDS = 4; //asteroidien määrä alussa
     private static final int SHOT_LIMIT = 5; // yhtäaikaisten ammusten maksimimäärä
     private static final int STARTING_LEVEL = 1; //aloitetaan ykköstasolta
+    private static final int KILL_VALUE = 50;
 
     public int x;
     public int y;
     public int level;
+    public int score;
     public Ship ship;
     public ArrayList<Asteroid> asteroidlist;
     public ArrayList<Asteroid> deadasteroidlist;
@@ -38,6 +40,7 @@ public class EventHandler {
         this.x = x;
         this.y = y;
         this.level = STARTING_LEVEL;
+        this.score = 0;
         this.asteroidlist = new ArrayList<Asteroid>();
         this.deadasteroidlist = new ArrayList<Asteroid>();
         this.shotlist = new ArrayList<Shot>();
@@ -79,6 +82,10 @@ public class EventHandler {
             }
         }
     }
+    
+    public void updateShip() {
+        this.ship.move(x, y);
+    }
 
     /**
      * Liikutetaan jokaista asteroidia ja tarkistetaan osumat muiden objektien
@@ -91,6 +98,7 @@ public class EventHandler {
                 checkAsteroidAndShotCollision(a);
                 if (a.isDestroyed()) {
                     deadasteroidlist.add(a);
+                    score += KILL_VALUE;
                 } else {
                     a.move(x, y);
                 }
@@ -127,6 +135,15 @@ public class EventHandler {
             }
         }
     }
+    
+    public void updateAll() {
+        updateShip();
+        updateAsteroids();
+        updateShots();
+        generateShots();
+        cleanAsteroids();
+        cleanShots();
+    }
 
     /**
      * Sallii ammuksen luomisen, jos täytetään ehdot. Ehtoina on aluksen
@@ -154,6 +171,14 @@ public class EventHandler {
         if (!deadasteroidlist.isEmpty()) {
             asteroidlist.removeAll(deadasteroidlist);
         }
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public int getScore() {
+        return score;
     }
 
     /**

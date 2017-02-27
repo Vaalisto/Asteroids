@@ -21,3 +21,4 @@
 21.02.2017 | 1h  | Tehty lisää testejä.
 22.02.2017 | 2h  | Asteroidit syntyvät nyt turvallisesti ja aaltoja tulee loputtomiin.
 24.02.2017 | 4h  | Tehty pieniä muutoksia, lisää testejä ja valmisteltu kuudetta palautusta varten.
+27.02.2017 | 2h  | Tehty taso- ja pistenäyttö

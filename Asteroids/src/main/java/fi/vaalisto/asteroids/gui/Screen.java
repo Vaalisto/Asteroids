@@ -28,6 +28,7 @@ public class Screen extends JPanel implements Runnable {
     public ArrayList<Shot> deadshotlist;
     public GameKeyListener keylistener;
     public EventHandler eventhandler;
+    public JLabel statusbar;
 
     private boolean running = true;
     private boolean paused = false;
@@ -110,18 +111,24 @@ public class Screen extends JPanel implements Runnable {
             this.paused = true;
         }
     }
+    
+    public void drawHud(Graphics g) {
+        g.setColor(Color.GREEN);
+        if (paused) {
+            g.drawString("Paused", 10, 20);
+        } else {
+            g.drawString("Level: " + String.valueOf(eventhandler.getLevel()), 10, 20);
+            g.drawString("Score: " + String.valueOf(eventhandler.getScore()), 10, 35);
+        }
+        
+    }
 
     /**
      * Liikutetaan tai poistetaan pelikentällä olevia objekteja.
      */
     public void update() {
         if (!this.paused) {
-            this.eventhandler.ship.move(w, h);
-            this.eventhandler.updateAsteroids();
-            this.eventhandler.updateShots();
-            this.eventhandler.generateShots();
-            this.eventhandler.cleanShots();
-            this.eventhandler.cleanAsteroids();
+            eventhandler.updateAll();
         }
     }
 
@@ -148,5 +155,8 @@ public class Screen extends JPanel implements Runnable {
         drawShip(g);
         drawAsteroids(g);
         drawShots(g);
+        drawHud(g);
+        
+        
     }
 }

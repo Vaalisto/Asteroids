@@ -9,6 +9,7 @@ import javax.swing.*;
 public class Game extends JFrame {
 
     public Screen screen;
+    public JLabel statusbar;
 
     /**
      * Konstruktori luo uuden JFramen, jonka sisällä pyörii itse peli.
@@ -24,9 +25,13 @@ public class Game extends JFrame {
         setResizable(false);
         screen = new Screen(800, 600);
         this.add(screen);
-        setVisible(true);
+        setVisible(true);        
         Thread gameThread = new Thread(screen);
         gameThread.start();
 //            screen.run();
+    }
+    
+    public JLabel getStatusBar() {
+        return statusbar;
     }
 }
