@@ -53,7 +53,7 @@ public class Screen extends JPanel implements Runnable {
         super.setSize(w, h);
         this.setFocusable(true); //näppäimistökuuntelija ei toimi ilman tätä
         this.requestFocusInWindow(); //näppäimistökuuntelija ei toimi ilman tätä   
-        this.setDoubleBuffered(true);        
+        this.setDoubleBuffered(true);
         init();
     }
 
@@ -116,24 +116,23 @@ public class Screen extends JPanel implements Runnable {
     }
 
     public void startGame() {
-        if (menu) {
-            menu = false;            
-        }
+        menu = false;
     }
-    
+
     public void backToMenu() {
         menu = true;
-        init();
+        paused = false;
+        eventhandler.reset();
+        keylistener.ship = eventhandler.ship;
     }
-    
+
     public boolean isInMenu() {
         return menu;
     }
-    
+
     public boolean gameIsRunning() {
         return menu == false;
     }
-      
 
     public void drawHud(Graphics g) {
         g.setColor(Color.GREEN);

@@ -172,6 +172,17 @@ public class EventHandler {
             asteroidlist.removeAll(deadasteroidlist);
         }
     }
+    
+    public void reset() {        
+        level = STARTING_LEVEL;
+        score = 0;
+        asteroidlist = new ArrayList<Asteroid>();
+        deadasteroidlist = new ArrayList<Asteroid>();
+        shotlist = new ArrayList<Shot>();
+        deadshotlist = new ArrayList<Shot>();
+        initShip();
+        initAsteroids();
+    }
 
     public int getLevel() {
         return level;

@@ -1,4 +1,4 @@
-### Tuntikirjanpito
+﻿### Tuntikirjanpito
 | Päivä    | Tunnit | Kuvaus |
 |--------- | --- | --- |
 17.01.2017 | 3h  | Aiheen suunnittelua ja repon luonti
@@ -22,3 +22,4 @@
 22.02.2017 | 2h  | Asteroidit syntyvät nyt turvallisesti ja aaltoja tulee loputtomiin.
 24.02.2017 | 4h  | Tehty pieniä muutoksia, lisää testejä ja valmisteltu kuudetta palautusta varten.
 27.02.2017 | 2h  | Tehty taso- ja pistenäyttö
+04.03.2017 | 2h  | Tehty aloituruutu ja poistuminen pelistä mahdolliseksi
