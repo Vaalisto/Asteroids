@@ -39,10 +39,22 @@ public class GameKeyListener implements KeyListener {
             ship.setAccelerating(true);
         }
         if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-            ship.setShooting(true);
+            if (screen.isInMenu()) {
+                screen.startGame();
+            } else {
+                ship.setShooting(true);
+            }
+
         }
         if (e.getKeyCode() == KeyEvent.VK_P) {
             screen.changePause();
+        }
+        if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            if (screen.gameIsRunning()) {
+                screen.backToMenu();
+            } else {
+                System.exit(0);
+            }            
         }
 
     }

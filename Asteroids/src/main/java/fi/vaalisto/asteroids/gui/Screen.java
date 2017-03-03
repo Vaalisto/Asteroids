@@ -2,6 +2,7 @@ package fi.vaalisto.asteroids.gui;
 
 import fi.vaalisto.asteroids.logiikka.*;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.util.ArrayList;
@@ -30,8 +31,10 @@ public class Screen extends JPanel implements Runnable {
     public EventHandler eventhandler;
     public JLabel statusbar;
 
+    private boolean menu = true;
     private boolean running = true;
     private boolean paused = false;
+    private boolean gameover = false;
 
     /**
      * Konstruktori asettaa pelikentän leveyden, taustavärin ja alustaa
@@ -50,15 +53,15 @@ public class Screen extends JPanel implements Runnable {
         super.setSize(w, h);
         this.setFocusable(true); //näppäimistökuuntelija ei toimi ilman tätä
         this.requestFocusInWindow(); //näppäimistökuuntelija ei toimi ilman tätä   
-        this.setDoubleBuffered(true);
-        this.eventhandler = new EventHandler(w, h);
-        initKeyListener();
+        this.setDoubleBuffered(true);        
+        init();
     }
 
     /**
      * Alustaa näppäimistökuuntelijan.
      */
-    public void initKeyListener() {
+    public void init() {
+        this.eventhandler = new EventHandler(w, h);
         keylistener = new GameKeyListener(this.eventhandler.ship, this);
         this.addKeyListener(keylistener);
     }
@@ -111,23 +114,48 @@ public class Screen extends JPanel implements Runnable {
             this.paused = true;
         }
     }
+
+    public void startGame() {
+        if (menu) {
+            menu = false;            
+        }
+    }
     
+    public void backToMenu() {
+        menu = true;
+        init();
+    }
+    
+    public boolean isInMenu() {
+        return menu;
+    }
+    
+    public boolean gameIsRunning() {
+        return menu == false;
+    }
+      
+
     public void drawHud(Graphics g) {
         g.setColor(Color.GREEN);
         if (paused) {
             g.drawString("Paused", 10, 20);
+        } else if (menu) {
+            g.setFont(new Font("Arial", Font.PLAIN, 32));
+            g.drawString("ASTEROIDS!", 300, 300);
+            g.setFont(new Font("Arial", Font.PLAIN, 20));
+            g.drawString("Press space to play", 300, 350);
         } else {
             g.drawString("Level: " + String.valueOf(eventhandler.getLevel()), 10, 20);
             g.drawString("Score: " + String.valueOf(eventhandler.getScore()), 10, 35);
         }
-        
+
     }
 
     /**
      * Liikutetaan tai poistetaan pelikentällä olevia objekteja.
      */
     public void update() {
-        if (!this.paused) {
+        if (!this.paused && !this.menu) {
             eventhandler.updateAll();
         }
     }
@@ -152,11 +180,12 @@ public class Screen extends JPanel implements Runnable {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        drawShip(g);
-        drawAsteroids(g);
-        drawShots(g);
+        if (!menu) {
+            drawShip(g);
+            drawAsteroids(g);
+            drawShots(g);
+        }
         drawHud(g);
-        
-        
+
     }
 }
