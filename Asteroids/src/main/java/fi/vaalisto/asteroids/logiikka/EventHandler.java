@@ -82,9 +82,23 @@ public class EventHandler {
             }
         }
     }
-    
+
+    /**
+     * Liikuttaa pelaajan alusta, jos se ei ole tuhoutunut.
+     */
     public void updateShip() {
-        this.ship.move(x, y);
+        if (!ship.isDestroyed()) {
+            ship.move(x, y);
+        }
+    }
+    
+    /**
+     * Palautetaan totuusarvo, onko alus tuhoutunut.
+     * 
+     * @return onko alus tuhoutunut
+     */
+    public boolean shipIsDead() {
+        return ship.isDestroyed();
     }
 
     /**
@@ -123,6 +137,17 @@ public class EventHandler {
     }
 
     /**
+     * Tarkistetaan onko jokin asteroideista osunut alukseen.
+     */
+    public void checkAsteroindAndShipCollision() {
+        if (!asteroidlist.isEmpty()) {
+            for (Asteroid a : asteroidlist) {
+                a.checkShipCollision(ship);
+            }
+        }
+    }
+
+    /**
      * Liikutetaan jokaista ammusta.
      */
     public void updateShots() {
@@ -136,6 +161,10 @@ public class EventHandler {
         }
     }
     
+    /**
+     * Kutsuu jokaista päivitys- ja siivousmetodia.
+     */
+
     public void updateAll() {
         updateShip();
         updateAsteroids();
@@ -173,7 +202,11 @@ public class EventHandler {
         }
     }
     
-    public void reset() {        
+    /**
+     * Alustetaan peli uutta pelikertaa varten.
+     */
+
+    public void reset() {
         level = STARTING_LEVEL;
         score = 0;
         asteroidlist = new ArrayList<Asteroid>();

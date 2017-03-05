@@ -73,11 +73,6 @@ public class GameObjTest {
     }
 
     @Test
-    public void getActiveRightInConstructor() {
-        assertFalse(ship1.isActive());
-    }
-
-    @Test
     public void getVelocitiesRight() {
         ship1.setxVelocity(10);
         ship1.setyVelocity(-10);
@@ -101,7 +96,7 @@ public class GameObjTest {
     @Test
     public void moveCrossingScreenBorderHorizontaly() {
         ship1.setxVelocity(900);
-        ship1.move(800, 600);        
+        ship1.move(800, 600);
         assertEquals(100, ship1.getX(), 0.0);
     }
 
@@ -149,7 +144,7 @@ public class GameObjTest {
         assertNotNull(ship1.getImage());
         assertNotNull(asteroid.getImage());
     }
-    
+
     @Test
     public void radiusIsCalculatedRight() {
         assertEquals(15, ship1.radius);

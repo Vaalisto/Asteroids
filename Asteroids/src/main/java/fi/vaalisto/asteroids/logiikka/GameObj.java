@@ -15,8 +15,7 @@ abstract class GameObj {
     int radius; // objektin osumaalueen säde
     double x, y; //objektin sijainti x,y-koordinaatteina
     double angle; //objektin keulan suunta
-    double xVelocity, yVelocity; // objektin nopeuden x-, ja y-komponentit        
-    boolean active; //totuusarvo, jota voidaan käyttää pelin tauottamiseksi
+    double xVelocity, yVelocity; // objektin nopeuden x-, ja y-komponentit     
     boolean destroyed; //totuusarvo, jota voidaan käyttää objektin tuhoamiseen
     BufferedImage img;
 
@@ -42,10 +41,6 @@ abstract class GameObj {
 
     public BufferedImage getImage() {
         return img;
-    }
-
-    public boolean isActive() {
-        return active;
     }
 
     public void setDestroyed(boolean destroyed) {
@@ -138,7 +133,7 @@ abstract class GameObj {
      * ilmestyy olio kentän vastakkaiselle puolelle
      *
      * @param point tarkastettava x- tai y- koordinaatti
-     * @param limit x- tai y -koordinaattia, joka on >0
+     * @param limit x- tai y -koordinaattia, joka on suurempi kuin nolla
      * @return tarkastettu piste
      */
     public double borderCheck(double point, int limit) {

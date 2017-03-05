@@ -30,13 +30,21 @@ public class GameKeyListener implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            ship.setTurningLeft(true);
+            if (!screen.isInMenu()) {
+                ship.setTurningLeft(true);
+            }
         }
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            ship.setTurningRight(true);
+            if (!screen.isInMenu()) {
+                ship.setTurningRight(true);
+            }
+
         }
         if (e.getKeyCode() == KeyEvent.VK_UP) {
-            ship.setAccelerating(true);
+            if (!screen.isInMenu()) {
+                ship.setAccelerating(true);
+            }
+
         }
         if (e.getKeyCode() == KeyEvent.VK_SPACE) {
             if (screen.isInMenu()) {
@@ -47,14 +55,17 @@ public class GameKeyListener implements KeyListener {
 
         }
         if (e.getKeyCode() == KeyEvent.VK_P) {
-            screen.changePause();
+            if (!screen.isInMenu()) {
+                screen.changePause();
+            }
+
         }
         if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            if (screen.gameIsRunning()) {
+            if (!screen.isInMenu()) {
                 screen.backToMenu();
             } else {
                 System.exit(0);
-            }            
+            }
         }
 
     }

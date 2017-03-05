@@ -11,7 +11,6 @@
 * Ampua aluksella
 * Alus tuhoutuu osutessa asteroidiin
 * Pistelaskuriin kertyy pisteitä, kun ammuttu ammus tuhoaa asteroideja
-* Pistetulos tallentuu ja sen yhteyteen voi kirjoittaa nimensä.
 
 **Ohjeet:**
 
@@ -21,6 +20,7 @@
 | Nuoli oikealle   | Alus kääntyy oikealle   |
 | Välilyönti       | Alus ampuu              |
 | P                | Peli tauolle            |
+| Esc              | Toistuu pelistä         |
 
 
 ### [Rakennekuvaus](Rakennekuvaus.md)

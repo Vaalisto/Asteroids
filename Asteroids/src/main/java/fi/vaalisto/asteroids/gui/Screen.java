@@ -58,7 +58,7 @@ public class Screen extends JPanel implements Runnable {
     }
 
     /**
-     * Alustaa näppäimistökuuntelijan.
+     * Alustaa pelilogiikan ja näppäimistökuuntelijan.
      */
     public void init() {
         this.eventhandler = new EventHandler(w, h);
@@ -115,13 +115,22 @@ public class Screen extends JPanel implements Runnable {
         }
     }
 
+    /**
+     * Aloittaa pelin vaihtamalla totuusarvoja.
+     */
     public void startGame() {
         menu = false;
+        gameover = false;
     }
 
+    /**
+     * Poistuu pelistä päävalikkoon vaihtamalla totuusarvoja ja alustamalla
+     * pelin uudelleen.
+     */
     public void backToMenu() {
         menu = true;
         paused = false;
+        gameover = false;
         eventhandler.reset();
         keylistener.ship = eventhandler.ship;
     }
@@ -130,9 +139,15 @@ public class Screen extends JPanel implements Runnable {
         return menu;
     }
 
-    public boolean gameIsRunning() {
-        return menu == false;
+    public boolean isInGameover() {
+        return gameover;
     }
+    
+    /**
+     * Piirtää pelin valikot.
+     * 
+     * @param g grafiikkaan tarvittava luokka
+     */
 
     public void drawHud(Graphics g) {
         g.setColor(Color.GREEN);
@@ -142,7 +157,13 @@ public class Screen extends JPanel implements Runnable {
             g.setFont(new Font("Arial", Font.PLAIN, 32));
             g.drawString("ASTEROIDS!", 300, 300);
             g.setFont(new Font("Arial", Font.PLAIN, 20));
-            g.drawString("Press space to play", 300, 350);
+            g.drawString("Press space to play", 305, 350);
+        } else if (gameover) {
+            g.setFont(new Font("Arial", Font.PLAIN, 32));
+            g.drawString("Game over", 300, 300);
+            g.drawString("Score: " + String.valueOf(eventhandler.getScore()), 300, 350);
+            g.setFont(new Font("Arial", Font.PLAIN, 20));
+            g.drawString("Press esc to restart", 300, 390);
         } else {
             g.drawString("Level: " + String.valueOf(eventhandler.getLevel()), 10, 20);
             g.drawString("Score: " + String.valueOf(eventhandler.getScore()), 10, 35);
@@ -154,8 +175,11 @@ public class Screen extends JPanel implements Runnable {
      * Liikutetaan tai poistetaan pelikentällä olevia objekteja.
      */
     public void update() {
-        if (!this.paused && !this.menu) {
+        if (!paused && !menu && !gameover) {
             eventhandler.updateAll();
+            if (eventhandler.shipIsDead()) {
+                gameover = true;
+            }
         }
     }
 

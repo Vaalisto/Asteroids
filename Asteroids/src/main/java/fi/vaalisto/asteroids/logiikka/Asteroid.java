@@ -38,7 +38,7 @@ public class Asteroid extends GameObj {
             System.out.println("Asteroid picture missing!");
         }
         calculateRadius();
-        randomizeAsterdoid(multiplier);
+        randomizeAsteroid(multiplier);
     }
 
     /**
@@ -71,7 +71,7 @@ public class Asteroid extends GameObj {
     /**
      * Arvotaan asteroidille satunnaiset nopeusvektorit.
      */
-    private void randomizeAsterdoid(double multiplier) {
+    private void randomizeAsteroid(double multiplier) {
         Random r = new Random();
         turnrate = (MIN_TURN_RATE + (MAX_TURN_RATE - MIN_TURN_RATE) * r.nextDouble()) * (r.nextBoolean() ? 1 : -1);
         xVelocity = multiplier * (MIN_SPEED + (MAX_SPEED - MIN_SPEED) * r.nextDouble()) * (r.nextBoolean() ? 1 : -1);

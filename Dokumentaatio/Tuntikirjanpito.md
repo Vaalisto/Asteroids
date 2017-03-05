@@ -23,3 +23,4 @@
 24.02.2017 | 4h  | Tehty pieniä muutoksia, lisää testejä ja valmisteltu kuudetta palautusta varten.
 27.02.2017 | 2h  | Tehty taso- ja pistenäyttö
 04.03.2017 | 2h  | Tehty aloituruutu ja poistuminen pelistä mahdolliseksi
+05.03.2017 | 4h  | Hierottu peli valmiiksi ja luotu loppupalautukseen vaaditut raportit.

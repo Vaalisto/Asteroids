@@ -19,7 +19,7 @@ public class Ship extends GameObj {
 
     public boolean accelerating; // totuusarvo siitä kiihdyttääkö alus. Alus on ainoa objekti, joka voi kiihdyttää.
     public boolean turningLeft, turningRight; // totuusarvo siitä kääntyykö alus. Alus on ainoa objekti, joka voi kääntyä.
-    public boolean shooting;
+    public boolean shooting;    
     public int shootDelay;
 
     /**
@@ -41,7 +41,8 @@ public class Ship extends GameObj {
         this.turningLeft = false; //väliaikainen arvo testausta varten
         this.turningRight = false;
         this.shooting = false;
-        this.shootDelay = 0;
+        this.destroyed = false;
+        this.shootDelay = 0;        
         this.img = null;
         try {
             this.img = ImageIO.read(getClass().getClassLoader().getResourceAsStream(IMG_NAME));

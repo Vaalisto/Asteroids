@@ -40,6 +40,20 @@ public class EventHandlerTest {
     public void asteroidsAreInitalized() {
         assertEquals(4, eh.asteroidlist.size());
     }
+    
+    @Test
+    public void levelAndScoreStartFromOneAndZero() {
+        assertEquals(1, eh.getLevel());
+        assertEquals(0, eh.getScore());
+    }
+
+    @Test
+    public void shipStartAtCenter() {
+        double x = eh.ship.getX();
+        double y = eh.ship.getY();
+        assertEquals(x, eh.x / 2, 0.0);
+        assertEquals(y, eh.y / 2, 0.0);
+    }
 
     @Test
     public void shotIsGenerated() {
@@ -85,6 +99,40 @@ public class EventHandlerTest {
         }
         assertEquals(0, eh.shotlist.size());
         assertEquals(1, eh.deadshotlist.size());
+    }
+
+    @Test
+    public void shipMovesWithUpdate() {
+        eh.ship.setxVelocity(1);
+        double initialX = eh.ship.getX();
+        eh.updateShip();
+        double endX = eh.ship.getX();
+        assertTrue(initialX < endX);
+        assertFalse(eh.shipIsDead());
+    }
+
+    @Test
+    public void shipDoesntMoveWhenDestroyed() {
+        eh.ship.setxVelocity(1);
+        double initialX = eh.ship.getX();
+        eh.ship.setDestroyed(true);
+        eh.updateShip();
+        double endX = eh.ship.getX();
+        assertTrue(initialX == endX);
+        assertTrue(eh.shipIsDead());
+    }
+
+    @Test
+    public void gameResets() {
+        for (Asteroid a : eh.asteroidlist) {
+            a.setDestroyed(true);
+        }
+        eh.updateAsteroids();
+        eh.cleanAsteroids();
+        assertEquals(0, eh.asteroidlist.size());
+        eh.reset();
+        assertEquals(4, eh.asteroidlist.size());
+
     }
 
 }
